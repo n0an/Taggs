@@ -21,16 +21,29 @@ class InterestViewController: UIViewController {
     fileprivate var headerView: InterestHeaderView!
     fileprivate var headerMaskLayer: CAShapeLayer!
     
+    fileprivate var posts = [Post]()
     
+    
+    fileprivate enum Storyboard {
+        static let cellIDWithImage = "PostCellWithImage"
+        static let cellIDWithOutImage = "PostCellWithoutImage"
+        
+        static let segueIDShowComments = "Show Comments"
+
+    }
+    
+    
+    // MARK: - viewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         
+        tableView.estimatedRowHeight = 387
+        tableView.rowHeight = UITableViewAutomaticDimension
+
         headerView = tableView.tableHeaderView as! InterestHeaderView
-        
+        headerView.delegate = self
         headerView.interest = interest
-
         
         tableView.tableHeaderView = nil
         tableView.addSubview(headerView)
@@ -44,7 +57,7 @@ class InterestViewController: UIViewController {
         
         updateHeaderView()
         
-
+        fetchPosts()
         
     }
     
@@ -58,16 +71,18 @@ class InterestViewController: UIViewController {
         updateHeaderView()
     }
     
-    
-
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
     
+    // MARK: - HELPER METHODS
+
     func updateHeaderView() {
         let effectiveHeight = tableHeaderHeight - tableHeaderCutAway / 2
         var headerRect = CGRect(x: 0, y: -effectiveHeight, width: tableView.bounds.width, height: tableHeaderHeight)
@@ -89,6 +104,13 @@ class InterestViewController: UIViewController {
         
     }
     
+    func fetchPosts()
+    {
+        posts = Post.allPosts
+        tableView.reloadData()
+    }
+
+    
     
 
 }
@@ -96,19 +118,48 @@ class InterestViewController: UIViewController {
 
 
 
+// MARK: - UITableViewDataSource
 
 extension InterestViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        return cell
+        
+        let post = posts[indexPath.row]
+        
+        if post.postImage != nil {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIDWithImage, for: indexPath) as! PostTableViewCell
+        
+            cell.post = post
+            cell.delegate = self
+            return cell
+        } else {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIDWithOutImage, for: indexPath) as! PostTableViewCell
+
+            cell.post = post
+            cell.delegate = self
+            return cell
+        }
+
+        
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension InterestViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
 
+
+// MARK: - UIScrollViewDelegate
 
 extension InterestViewController : UIScrollViewDelegate
 {
@@ -132,6 +183,26 @@ extension InterestViewController : UIScrollViewDelegate
     }
 }
 
+// MARK: - ===InterestHeaderViewDelegate===
+
+extension InterestViewController : InterestHeaderViewDelegate {
+    func closeButtonClicked() {
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+}
+
+
+
+// MARK: - ===PostTableViewCellDelegate===
+
+extension InterestViewController : PostTableViewCellDelegate {
+    func commentButtonClicked(post: Post) {
+        
+        self.performSegue(withIdentifier: Storyboard.segueIDShowComments, sender: post)
+        
+    }
+}
 
 
 

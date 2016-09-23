@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol InterestHeaderViewDelegate {
+    func closeButtonClicked()
+}
+
+
 class InterestHeaderView: UIView {
     
     // MARK: - Public API
@@ -17,9 +22,10 @@ class InterestHeaderView: UIView {
             updateUI()
         }
     }
-
     
-    private func updateUI() {
+    var delegate: InterestHeaderViewDelegate!
+    
+    fileprivate func updateUI() {
         backgroundImageView?.image! = interest.featuredImage
         interestTitleLabel?.text! = interest.title
         numberOfMembersLabel.text! = "\(interest.numberOfMembers) members"
@@ -43,11 +49,11 @@ class InterestHeaderView: UIView {
         closeButtonBackgroundView.layer.masksToBounds = true
     }
     
-    @IBAction func closeButtonTapped(sender: UIButton)
+    @IBAction func closeButtonTapped(_ sender: UIButton)
     {
         print("clsoe button tapped gets called")
         // delegate right now is InterestViewController
-//        delegate.closeButtonClicked()
+        delegate.closeButtonClicked()
     }
 }
 

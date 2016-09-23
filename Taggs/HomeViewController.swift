@@ -27,10 +27,31 @@ class HomeViewController: UIViewController {
     }
     
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if UIScreen.main.bounds.size.height == 480.0 {
+            let flowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+            flowLayout.itemSize = CGSize(width: 250.0, height: 300.0)
+        }
         
+        
+        
+        configureUserProfile()
+
+    }
+    
+    func configureUserProfile() {
+        // configure image button
+        currentUserProfileImageButton.contentMode = .scaleAspectFill
+        currentUserProfileImageButton.layer.cornerRadius = currentUserProfileImageButton.bounds.width / 2
+        currentUserProfileImageButton.layer.masksToBounds = true
     }
     
     
