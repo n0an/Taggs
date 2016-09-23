@@ -8,6 +8,6 @@ target 'Taggs' do
   # Pods for Taggs
   
   pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'  
-
+  #pod "ImagePickerSheetController", "~> 0.9.1"
 
 end

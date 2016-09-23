@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class NewPostViewController: UIViewController {
     
@@ -16,13 +17,88 @@ class NewPostViewController: UIViewController {
     @IBOutlet weak var postContentTextView: UITextView!
     @IBOutlet weak var postImageView: UIImageView!
     
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        postContentTextView.becomeFirstResponder()
+        postContentTextView.text = ""
+        
+        currentUserProfileImageView.layer.cornerRadius = currentUserProfileImageView.bounds.width/2
+        currentUserProfileImageView.layer.masksToBounds = true
         
     }
 
     
+    @IBAction func pickFeaturedImageClicked(_ sender: UITapGestureRecognizer) {
+        
+        print("SHOW IMAGE PICKER")
+        
+        let authorization = PHPhotoLibrary.authorizationStatus()
+        
+        if authorization == .notDetermined {
+            PHPhotoLibrary.requestAuthorization({ (status) in
+                DispatchQueue.main.async {
+                    self.pickFeaturedImageClicked(sender)
+                }
+            })
+            return
+        }
+        
+        if authorization == .authorized {
+            presentImagePicker()
+        }
+        
+        
+    }
+    
+    
+    func presentImagePicker() {
+        let imagePicker = UIImagePickerController()
+        
+        imagePicker.delegate = self
+        
+        imagePicker.allowsEditing = false
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+        } else {
+            imagePicker.sourceType = .photoLibrary
+        }
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    
 }
+
+
+extension NewPostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        self.postImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
