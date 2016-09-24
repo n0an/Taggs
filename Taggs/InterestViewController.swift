@@ -19,7 +19,6 @@ class InterestViewController: UIViewController {
     @IBOutlet weak var newPostButton: DesignableButton!
 
     
-    
     fileprivate let tableHeaderHeight: CGFloat = 350.0
     fileprivate let tableHeaderCutAway: CGFloat = 50.0
     

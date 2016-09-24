@@ -20,6 +20,8 @@
 		180191381D95A09E00188FFC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180191371D95A09E00188FFC /* Post.swift */; };
 		1801913A1D95A19D00188FFC /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180191391D95A19D00188FFC /* PostTableViewCell.swift */; };
 		18B5566A1D95B5E000879E93 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B556691D95B5E000879E93 /* NewPostViewController.swift */; };
+		18B5566C1D9679CF00879E93 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5566B1D9679CF00879E93 /* Comment.swift */; };
+		18B5566E1D967A1800879E93 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5566D1D967A1800879E93 /* CommentsViewController.swift */; };
 		65BCE015EDEED125141979AB /* Pods_Taggs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D728FC63936D539E16ED66 /* Pods_Taggs.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,8 @@
 		180191371D95A09E00188FFC /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		180191391D95A19D00188FFC /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		18B556691D95B5E000879E93 /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		18B5566B1D9679CF00879E93 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		18B5566D1D967A1800879E93 /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		59D76C75AC31268F86E3CCFD /* Pods-Taggs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taggs.release.xcconfig"; path = "Pods/Target Support Files/Pods-Taggs/Pods-Taggs.release.xcconfig"; sourceTree = "<group>"; };
 		9D269809F91F7C9B9B57C10D /* Pods-Taggs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taggs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taggs/Pods-Taggs.debug.xcconfig"; sourceTree = "<group>"; };
 		E8D728FC63936D539E16ED66 /* Pods_Taggs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Taggs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +84,7 @@
 				180191161D94662E00188FFC /* AppDelegate.swift */,
 				1801912F1D9468E400188FFC /* Home Screen */,
 				180191341D9469D000188FFC /* Interest Screen */,
+				18B5566F1D967A2100879E93 /* Comments Screen */,
 				1801912C1D94672600188FFC /* Model */,
 				1801911A1D94662E00188FFC /* Main.storyboard */,
 				1801911D1D94662E00188FFC /* Assets.xcassets */,
@@ -93,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				1801912A1D94672000188FFC /* Interest.swift */,
+				18B5566B1D9679CF00879E93 /* Comment.swift */,
 				180191371D95A09E00188FFC /* Post.swift */,
 				180191351D95A08800188FFC /* User.swift */,
 			);
@@ -117,6 +123,14 @@
 				18B556691D95B5E000879E93 /* NewPostViewController.swift */,
 			);
 			name = "Interest Screen";
+			sourceTree = "<group>";
+		};
+		18B5566F1D967A2100879E93 /* Comments Screen */ = {
+			isa = PBXGroup;
+			children = (
+				18B5566D1D967A1800879E93 /* CommentsViewController.swift */,
+			);
+			name = "Comments Screen";
 			sourceTree = "<group>";
 		};
 		B655E7662EDCA0024D66C665 /* Frameworks */ = {
@@ -269,7 +283,9 @@
 				180191171D94662E00188FFC /* AppDelegate.swift in Sources */,
 				180191291D9466EC00188FFC /* HomeViewController.swift in Sources */,
 				180191361D95A08800188FFC /* User.swift in Sources */,
+				18B5566E1D967A1800879E93 /* CommentsViewController.swift in Sources */,
 				1801913A1D95A19D00188FFC /* PostTableViewCell.swift in Sources */,
+				18B5566C1D9679CF00879E93 /* Comment.swift in Sources */,
 				18B5566A1D95B5E000879E93 /* NewPostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
