@@ -16,9 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
         
         window?.backgroundColor = UIColor(hex: "f2f2f2")
+        
+        // Register PFObject subclasses
+        TestObject.initialize()
+        
         
         let configuration = ParseClientConfiguration {
             $0.applicationId = "NagTaggs"
@@ -26,6 +30,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         Parse.initialize(with: configuration)
 
+//        let testObject = TestObject()
+//        testObject.title = "ObjectNumber1"
+//        testObject.objectDescription = "This is a some description"
+//        testObject.numbers = 100
+//        
+//        testObject.saveInBackground { (success, error) in
+//            if success {
+//                print("succeess ObjectNumber1")
+//            }
+//        }
         
         
         

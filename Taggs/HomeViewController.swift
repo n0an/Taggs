@@ -193,7 +193,7 @@ extension HomeViewController: PFLogInViewControllerDelegate, PFSignUpViewControl
         signUpController.dismiss(animated: true, completion: nil)
     }
     
-    
+    // TODO: - add Parse installation from NagSnapChat loginsignupvc
 }
 
 
