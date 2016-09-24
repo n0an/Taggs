@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class HomeViewController: UIViewController {
     
@@ -40,6 +41,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         if UIScreen.main.bounds.size.height == 480.0 {
             let flowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
