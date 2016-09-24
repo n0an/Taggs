@@ -52,10 +52,10 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Interest Cell" rowHeight="400" id="PdD-pg-P8M" customClass="DiscoverTableViewCell" customModule="Taggs" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="22" width="1000" height="400"/>
+                                                <rect key="frame" x="0.0" y="22" width="375" height="400"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PdD-pg-P8M" id="tQ0-P9-K6I">
-                                                    <frame key="frameInset" width="1000" height="400"/>
+                                                    <frame key="frameInset" width="375" height="399"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CtL-Cm-BoA" customClass="CardView" customModule="Taggs" customModuleProvider="target">
@@ -276,6 +276,9 @@
                                                 <constraint firstAttribute="width" constant="30" id="bYr-lc-ARi"/>
                                             </constraints>
                                             <state key="normal" image="profile1"/>
+                                            <connections>
+                                                <action selector="actionUserProfileButtonClicked" destination="d2C-0R-ZJ8" eventType="touchUpInside" id="aCt-zW-Nte"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1OR-Wy-TeC">
                                             <constraints>
@@ -957,7 +960,7 @@
                                         <rect key="frame" x="0.0" y="580" width="600" height="109"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="feP-Df-dUN" id="enN-qT-39v">
-                                            <frame key="frameInset" width="1000" height="109"/>
+                                            <frame key="frameInset" width="600" height="108"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="David" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gc-La-EUd">
@@ -1298,6 +1301,6 @@
         <image name="search" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PTe-LI-tZE"/>
+        <segue reference="6wC-j8-eQR"/>
     </inferredMetricsTieBreakers>
 </document>

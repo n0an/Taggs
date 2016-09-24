@@ -8,18 +8,18 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class HomeViewController: UIViewController {
     
-    // MARK: - IBOutlets
-    
+    // MARK: - OUTLETS
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var currentUserProfileImageButton: UIButton!
     @IBOutlet weak var currentUserFullNameButton: UIButton!
     
-    // MARK: - UICollectionViewDataSource
+    // MARK: - PROPERTIES
     fileprivate var interests = Interest.createInterests()
     fileprivate var slideRightTransitionAnimator = SlideRightTransitionAnimator()
     fileprivate var popTransitionAnimator = PopTransitionAnimator()
@@ -32,29 +32,40 @@ class HomeViewController: UIViewController {
         static let segueIDShowDiscovery = "Show Discover"
     }
     
-    
+    // MARK: - STATUS BAR CUSTOMIZATION
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    
-    
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         if UIScreen.main.bounds.size.height == 480.0 {
             let flowLayout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
             flowLayout.itemSize = CGSize(width: 250.0, height: 300.0)
         }
         
-        
-        
         configureUserProfile()
 
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if PFUser.current() == nil {
+            
+            presentLoginViewController()
+            
+        } else {
+            
+        }
+        
+    }
+    
+    
+    // MARK: - HELPER METHODS
+
     func configureUserProfile() {
         
         self.view.layoutIfNeeded()
@@ -62,6 +73,14 @@ class HomeViewController: UIViewController {
         currentUserProfileImageButton.contentMode = .scaleAspectFill
         currentUserProfileImageButton.layer.cornerRadius = currentUserProfileImageButton.bounds.width / 2
         currentUserProfileImageButton.layer.masksToBounds = true
+    }
+    
+    
+    @IBAction func actionUserProfileButtonClicked() {
+        
+        PFUser.logOut()
+        presentLoginViewController()
+        
     }
     
     
@@ -140,9 +159,56 @@ extension HomeViewController: UIScrollViewDelegate {
         
     }
     
+}
+
+
+
+// MARK: - PARSE LOGIN / SIGNUP
+
+extension HomeViewController: PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate {
+    
+    func presentLoginViewController() {
+        
+        let loginController = PFLogInViewController()
+        let signupController = PFSignUpViewController()
+        
+        signupController.delegate = self
+        loginController.delegate = self
+        
+        loginController.fields = [PFLogInFields.usernameAndPassword, PFLogInFields.logInButton, PFLogInFields.signUpButton]
+        
+        loginController.signUpController = signupController
+        
+        present(loginController, animated: true, completion: nil)
+        
+        
+    }
+    
+    
+    func log(_ logInController: PFLogInViewController, didLogIn user: PFUser) {
+        logInController.dismiss(animated: true, completion: nil)
+    }
+    
+    func signUpViewController(_ signUpController: PFSignUpViewController, didSignUp user: PFUser) {
+        signUpController.dismiss(animated: true, completion: nil)
+    }
     
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
