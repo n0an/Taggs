@@ -8,8 +8,7 @@
 
 import UIKit
 
-public struct CommentKey
-{
+public struct CommentKey {
     static let className = "Comment"
     static let postId = "postId"
     static let author = "author"
@@ -18,8 +17,7 @@ public struct CommentKey
     static let likedUserIds = "likedUserIds"
 }
 
-class Comment
-{
+class Comment {
     var id: String = ""
     var createdAt: String = "today"
     let postId: String
@@ -29,8 +27,7 @@ class Comment
     
     var userDidLike: Bool = false
     
-    init(id: String, createdAt: String, postId: String, author: User, commentText: String, numberOfLikes: Int)
-    {
+    init(id: String, createdAt: String, postId: String, author: User, commentText: String, numberOfLikes: Int) {
         self.id = id
         self.createdAt = createdAt
         self.postId = postId
@@ -40,14 +37,13 @@ class Comment
     }
     
     // dummy data
-    static func allComments() -> [Comment]
-    {
+    static func allComments() -> [Comment] {
         return [
-            Comment(id: "c1", createdAt: "May 21", postId: "p1", author: User.allUsers()[0], commentText: "Hello I love this post! Isn't this a nice comment? Blehhhh 😜", numberOfLikes: 21),
-            Comment(id: "c2", createdAt: "May 21", postId: "p1", author: User.allUsers()[0], commentText: "Hello I love this post! Isn't this a nice comment? Blehhhh 😜", numberOfLikes: 21),
-            Comment(id: "c3", createdAt: "May 21", postId: "p1", author: User.allUsers()[0], commentText: "Hello I love this post! Isn't this a nice comment? Blehhhh 😜", numberOfLikes: 21),
-            Comment(id: "c4", createdAt: "May 21", postId: "p1", author: User.allUsers()[0], commentText: "Hello I love this post! Isn't this a nice comment? Blehhhh 😜", numberOfLikes: 21),
-            Comment(id: "c5", createdAt: "May 21", postId: "p1", author: User.allUsers()[0], commentText: "Hello I love this post! Isn't this a nice comment? Blehhhh 😜", numberOfLikes: 21)
+            Comment(id: "c1", createdAt: "May 21", postId: "p1", author: User.allUsers()[0], commentText: "Hello I55 love this post! Isn't this a nice comment? Blehhhh 😜", numberOfLikes: 21),
+            Comment(id: "c2", createdAt: "May 21", postId: "p1", author: User.allUsers()[0], commentText: "Hello I22 love this post! Isn't this a nice comment? Blehhhh 😜", numberOfLikes: 21),
+            Comment(id: "c3", createdAt: "May 21", postId: "p1", author: User.allUsers()[0], commentText: "Hello I11 love this post! Isn't this a nice comment? Blehhhh 😜", numberOfLikes: 21),
+            Comment(id: "c4", createdAt: "May 21", postId: "p1", author: User.allUsers()[0], commentText: "Hello I44 love this post! Isn't this a nice comment? Blehhhh 😜", numberOfLikes: 21),
+            Comment(id: "c5", createdAt: "May 21", postId: "p1", author: User.allUsers()[0], commentText: "Hello I33 love this post! Isn't this a nice comment? Blehhhh 😜", numberOfLikes: 21)
         ]
     }
 }

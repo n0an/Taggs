@@ -8,8 +8,7 @@
 
 import UIKit
 
-class Interest
-{
+class Interest {
     // MARK: - Public API
     var title = ""
     var description = ""
@@ -17,8 +16,7 @@ class Interest
     var numberOfPosts = 0
     var featuredImage: UIImage!
     
-    init(title: String, description: String, featuredImage: UIImage!)
-    {
+    init(title: String, description: String, featuredImage: UIImage!) {
         self.title = title
         self.description = description
         self.featuredImage = featuredImage
@@ -28,8 +26,7 @@ class Interest
     
     // MARK: - Private
     // dummy data
-    static func createInterests() -> [Interest]
-    {
+    static func createInterests() -> [Interest] {
         return [
             Interest(title: "We Love Traveling Around the World", description: "We love backpack and adventures! We walked to Antartica yesterday, and camped with some cute pinguines, and talked about this wonderful app idea. 🐧⛺️✨", featuredImage: UIImage(named: "r1")!),
             Interest(title: "Romance Stories", description: "We love romantic stories. We walked to Antartica yesterday, and camped with some cute pinguines, and talked about this wonderful app idea. 🐧⛺️✨", featuredImage: UIImage(named: "r2")!),

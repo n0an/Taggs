@@ -139,6 +139,14 @@ class InterestViewController: UIViewController {
         
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Storyboard.segueIDShowComments {
+            let commentsVC = segue.destination as! CommentsViewController
+            commentsVC.post = sender as! Post
+        }
+    }
+    
 
 }
 
@@ -181,6 +189,11 @@ extension InterestViewController: UITableViewDataSource {
 extension InterestViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let post = self.posts[indexPath.row]
+        
+        self.performSegue(withIdentifier: Storyboard.segueIDShowComments, sender: post)
+        
     }
 }
 

@@ -60,9 +60,9 @@ class PostTableViewCell: UITableViewCell {
         likeButton.cornerRadius = 3.0
         likeButton.borderColor = UIColor.lightGray
         
-        commentButton.borderWidth = 2.0
-        commentButton.cornerRadius = 3.0
-        commentButton.borderColor = UIColor.lightGray
+        commentButton?.borderWidth = 2.0
+        commentButton?.cornerRadius = 3.0
+        commentButton?.borderColor = UIColor.lightGray
     
     }
     
