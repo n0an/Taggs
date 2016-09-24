@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		154326131D969769004E9D9C /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154326121D969769004E9D9C /* CommentTableViewCell.swift */; };
 		15EF1A481D96BC3600442FB0 /* SlideRightTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EF1A471D96BC3600442FB0 /* SlideRightTransitionAnimator.swift */; };
+		15F414501D96DE2A00FE1883 /* DiscoverTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F4144F1D96DE2A00FE1883 /* DiscoverTableViewCell.swift */; };
+		15F414521D96DFE300FE1883 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F414511D96DFE300FE1883 /* DiscoverViewController.swift */; };
 		180191171D94662E00188FFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180191161D94662E00188FFC /* AppDelegate.swift */; };
 		1801911C1D94662E00188FFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1801911A1D94662E00188FFC /* Main.storyboard */; };
 		1801911E1D94662E00188FFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1801911D1D94662E00188FFC /* Assets.xcassets */; };
@@ -36,6 +38,8 @@
 /* Begin PBXFileReference section */
 		154326121D969769004E9D9C /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		15EF1A471D96BC3600442FB0 /* SlideRightTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideRightTransitionAnimator.swift; sourceTree = "<group>"; };
+		15F4144F1D96DE2A00FE1883 /* DiscoverTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewCell.swift; sourceTree = "<group>"; };
+		15F414511D96DFE300FE1883 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		180191131D94662E00188FFC /* Taggs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taggs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		180191161D94662E00188FFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1801911B1D94662E00188FFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -167,8 +171,10 @@
 		18B5567A1D96D19B00879E93 /* Discover Screen */ = {
 			isa = PBXGroup;
 			children = (
+				15F414511D96DFE300FE1883 /* DiscoverViewController.swift */,
 				18B556781D96D17800879E93 /* CardView.swift */,
 				18B5567B1D96D37800879E93 /* InterestButton.swift */,
+				15F4144F1D96DE2A00FE1883 /* DiscoverTableViewCell.swift */,
 			);
 			name = "Discover Screen";
 			sourceTree = "<group>";
@@ -320,6 +326,7 @@
 				1801912B1D94672000188FFC /* Interest.swift in Sources */,
 				180191311D94694100188FFC /* InterestViewController.swift in Sources */,
 				180191381D95A09E00188FFC /* Post.swift in Sources */,
+				15F414501D96DE2A00FE1883 /* DiscoverTableViewCell.swift in Sources */,
 				18B5567C1D96D37800879E93 /* InterestButton.swift in Sources */,
 				180191331D94697000188FFC /* InterestHeaderView.swift in Sources */,
 				18B556751D96C72200879E93 /* PopTransitionAnimator.swift in Sources */,
@@ -333,6 +340,7 @@
 				1801913A1D95A19D00188FFC /* PostTableViewCell.swift in Sources */,
 				18B5566C1D9679CF00879E93 /* Comment.swift in Sources */,
 				18B556771D96CA9C00879E93 /* SlideRightThenPopTransitionAnimator.swift in Sources */,
+				15F414521D96DFE300FE1883 /* DiscoverViewController.swift in Sources */,
 				18B5566A1D95B5E000879E93 /* NewPostViewController.swift in Sources */,
 				18B556731D96A72300879E93 /* NewInterestViewController.swift in Sources */,
 			);

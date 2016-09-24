@@ -28,6 +28,7 @@ class HomeViewController: UIViewController {
         static let cellID = "Interest Cell"
         static let segueShowInterest = "Show Interest"
         static let segueIDNewInterest = "CreateNewInterest"
+        static let segueIDShowDiscovery = "Show Discover"
     }
     
     
@@ -80,6 +81,13 @@ class HomeViewController: UIViewController {
             let newInterestVC = segue.destination as! NewInterestViewController
             
             newInterestVC.transitioningDelegate = slideRightTransitionAnimator
+            
+        } else if segue.identifier == Storyboard.segueIDShowDiscovery {
+            
+            let discoveryVC = segue.destination as! DiscoverViewController
+            
+            discoveryVC.transitioningDelegate = slideRightThenPopTransitionAnimator
+            
         }
 
     }

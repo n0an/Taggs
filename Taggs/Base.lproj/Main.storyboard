@@ -52,10 +52,10 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Interest Cell" rowHeight="400" id="PdD-pg-P8M" customClass="DiscoverTableViewCell" customModule="Taggs" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="22" width="375" height="400"/>
+                                                <rect key="frame" x="0.0" y="22" width="1000" height="400"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PdD-pg-P8M" id="tQ0-P9-K6I">
-                                                    <frame key="frameInset" width="375" height="399"/>
+                                                    <frame key="frameInset" width="1000" height="400"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CtL-Cm-BoA" customClass="CardView" customModule="Taggs" customModuleProvider="target">
@@ -153,11 +153,35 @@
                     <connections>
                         <outlet property="refreshButton" destination="ZO5-pJ-Ccn" id="7lN-ky-Owo"/>
                         <outlet property="searchBar" destination="pbn-B0-9ar" id="mXC-NZ-XIC"/>
+                        <outlet property="searchBarInputAccessoryView" destination="ahk-cT-rTl" id="lUL-wG-ZDp"/>
                         <outlet property="tableView" destination="wMG-r3-glq" id="RTt-js-k6Z"/>
                         <segue destination="j8W-L0-7Dw" kind="presentation" identifier="Show Discover Interest" id="PTe-LI-tZE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GD8-9I-JaA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="ahk-cT-rTl" userLabel="HideKeyboardInputAccessoryView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUX-cG-LVX" userLabel="HideKeyboardButton">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="JbF-O3-6re"/>
+                                <constraint firstAttribute="width" constant="30" id="JkF-4p-7LU"/>
+                            </constraints>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <state key="normal" image="hideKeyboardButton"/>
+                            <connections>
+                                <action selector="hideKeyboardButtonClicked:" destination="gCk-zR-hhy" eventType="touchUpInside" id="pe4-Vp-EZS"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="aUX-cG-LVX" secondAttribute="bottom" constant="9" id="IJd-T1-1e3"/>
+                        <constraint firstAttribute="trailing" secondItem="aUX-cG-LVX" secondAttribute="trailing" constant="16" id="pXd-lV-ins"/>
+                        <constraint firstItem="aUX-cG-LVX" firstAttribute="top" secondItem="ahk-cT-rTl" secondAttribute="top" constant="9" id="ymr-3f-5Sq"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="606" y="-730"/>
         </scene>
@@ -348,7 +372,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Bm6-nE-6S1">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableHeaderView" clipsSubviews="YES" contentMode="scaleToFill" id="XQW-EY-fLi" customClass="InterestHeaderView" customModule="Taggs" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="r1" translatesAutoresizingMaskIntoConstraints="NO" id="kCu-zL-2lr"/>
@@ -429,10 +453,10 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostCellWithImage" rowHeight="387" id="z2j-ZV-OyV" customClass="PostTableViewCell" customModule="Taggs" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="222" width="1000" height="387"/>
+                                        <rect key="frame" x="0.0" y="222" width="600" height="387"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z2j-ZV-OyV" id="CjT-rS-tEy">
-                                            <frame key="frameInset" width="1000" height="386"/>
+                                            <frame key="frameInset" width="600" height="386"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile1" translatesAutoresizingMaskIntoConstraints="NO" id="2HJ-vQ-4AA">
@@ -530,10 +554,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostCellWithoutImage" rowHeight="171" id="TlW-ba-feR" customClass="PostTableViewCell" customModule="Taggs" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="609" width="1000" height="171"/>
+                                        <rect key="frame" x="0.0" y="609" width="600" height="171"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TlW-ba-feR" id="G4d-eQ-VU5">
-                                            <frame key="frameInset" width="1000" height="170"/>
+                                            <frame key="frameInset" width="600" height="170"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile1" translatesAutoresizingMaskIntoConstraints="NO" id="jcX-ZB-JdV">
@@ -794,10 +818,10 @@
                                 <inset key="separatorInset" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCellWithImage" rowHeight="387" id="oqP-nu-1Nk" customClass="PostTableViewCell" customModule="Taggs" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="22" width="1000" height="387"/>
+                                        <rect key="frame" x="0.0" y="22" width="600" height="387"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oqP-nu-1Nk" id="LLP-um-iiz">
-                                            <frame key="frameInset" width="1000" height="386"/>
+                                            <frame key="frameInset" width="600" height="386"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile1" translatesAutoresizingMaskIntoConstraints="NO" id="Tvd-FB-R91">
@@ -866,10 +890,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCellWithoutImage" rowHeight="171" id="Tpb-Md-3rJ" customClass="PostTableViewCell" customModule="Taggs" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="409" width="1000" height="171"/>
+                                        <rect key="frame" x="0.0" y="409" width="600" height="171"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tpb-Md-3rJ" id="RWm-jk-JFN">
-                                            <frame key="frameInset" width="1000" height="170"/>
+                                            <frame key="frameInset" width="600" height="170"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile1" translatesAutoresizingMaskIntoConstraints="NO" id="4vc-D2-ONn">
@@ -930,10 +954,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Comment Cell" rowHeight="109" id="feP-Df-dUN" customClass="CommentTableViewCell" customModule="Taggs" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="580" width="1000" height="109"/>
+                                        <rect key="frame" x="0.0" y="580" width="600" height="109"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="feP-Df-dUN" id="enN-qT-39v">
-                                            <frame key="frameInset" width="1000" height="108"/>
+                                            <frame key="frameInset" width="1000" height="109"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="David" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gc-La-EUd">
