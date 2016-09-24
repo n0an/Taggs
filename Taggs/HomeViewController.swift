@@ -20,6 +20,7 @@ class HomeViewController: UIViewController {
     
     // MARK: - UICollectionViewDataSource
     fileprivate var interests = Interest.createInterests()
+    fileprivate var slideRightTransitionAnimator = SlideRightTransitionAnimator()
     
     fileprivate struct Storyboard {
         static let cellID = "Interest Cell"
@@ -58,7 +59,7 @@ class HomeViewController: UIViewController {
     }
     
     
-    // MARK: - Navigation
+    // MARK: - NAVIGATION
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Storyboard.segueShowInterest {
@@ -69,6 +70,11 @@ class HomeViewController: UIViewController {
             let interestViewController = navigationViewController.topViewController as! InterestViewController
             
             interestViewController.interest = interest
+            
+        } else if segue.identifier == Storyboard.segueIDNewInterest {
+            let newInterestVC = segue.destination as! NewInterestViewController
+            
+            newInterestVC.transitioningDelegate = slideRightTransitionAnimator
         }
 
     }
