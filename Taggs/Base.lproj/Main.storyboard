@@ -270,6 +270,9 @@
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="New Interest" image="add"/>
+                                            <connections>
+                                                <segue destination="u4g-2h-LfU" kind="presentation" identifier="CreateNewInterest" id="vNm-fj-0jH"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -1116,6 +1119,143 @@
             </objects>
             <point key="canvasLocation" x="4625" y="177"/>
         </scene>
+        <!--New Interest View Controller-->
+        <scene sceneID="ww0-5n-PGm">
+            <objects>
+                <viewController id="u4g-2h-LfU" customClass="NewInterestViewController" customModule="Taggs" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aer-IS-KIL"/>
+                        <viewControllerLayoutGuide type="bottom" id="BMX-hh-nfP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xEf-Jq-S5O">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="r2" translatesAutoresizingMaskIntoConstraints="NO" id="zB2-r7-jz4"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdB-7K-Cbp">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6M9-fu-asV">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="1SE-3E-C3U"/>
+                                            <constraint firstAttribute="height" constant="40" id="Qua-2m-dBN"/>
+                                        </constraints>
+                                        <state key="normal" image="CloseButton"/>
+                                        <connections>
+                                            <action selector="dismiss:" destination="u4g-2h-LfU" eventType="touchUpInside" id="1zl-PG-Qkh"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="New Interest Title..." borderStyle="bezel" clearsOnBeginEditing="YES" minimumFontSize="17" background="frame" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MNd-10-j3C" customClass="DesignableTextField" customModule="Spring">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="0IF-UC-54o"/>
+                                        </constraints>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Describe your new interest..." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="FnL-o3-WsT">
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="4bT-rV-Kl2"/>
+                                        </constraints>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2f-ze-Yq1" customClass="DesignableButton" customModule="Spring">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Edn-du-ool"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="✨ Create New Interest" backgroundImage="frame">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="createNewInterestButtonClicked:" destination="u4g-2h-LfU" eventType="touchUpInside" id="E4K-Qj-JZo"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3N-PF-5NQ" customClass="DesignableButton" customModule="Spring">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="haS-Ll-7W8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="📷 Pick Featured Image" backgroundImage="frame">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="selectFeaturedImageButtonClicked:" destination="u4g-2h-LfU" eventType="touchUpInside" id="yP6-vA-YOP"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.28491649029999999" green="0.78349518780000005" blue="0.85332638029999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="l3N-PF-5NQ" secondAttribute="trailing" constant="16" id="Ktg-Kl-S18"/>
+                                    <constraint firstItem="h2f-ze-Yq1" firstAttribute="top" secondItem="l3N-PF-5NQ" secondAttribute="bottom" constant="8" id="NZe-Ba-2Wk"/>
+                                    <constraint firstItem="MNd-10-j3C" firstAttribute="leading" secondItem="6M9-fu-asV" secondAttribute="trailing" constant="8" id="XHb-f2-AA7"/>
+                                    <constraint firstItem="6M9-fu-asV" firstAttribute="top" secondItem="mdB-7K-Cbp" secondAttribute="top" constant="32" id="XtF-8g-QbH"/>
+                                    <constraint firstItem="l3N-PF-5NQ" firstAttribute="leading" secondItem="mdB-7K-Cbp" secondAttribute="leading" constant="16" id="XzK-eF-kCe"/>
+                                    <constraint firstItem="6M9-fu-asV" firstAttribute="leading" secondItem="mdB-7K-Cbp" secondAttribute="leading" id="ZbA-3D-l3c"/>
+                                    <constraint firstAttribute="bottom" secondItem="FnL-o3-WsT" secondAttribute="bottom" constant="8" id="ccu-04-yaw"/>
+                                    <constraint firstAttribute="bottom" secondItem="h2f-ze-Yq1" secondAttribute="bottom" constant="16" id="e9l-ZL-deB"/>
+                                    <constraint firstItem="h2f-ze-Yq1" firstAttribute="leading" secondItem="mdB-7K-Cbp" secondAttribute="leading" constant="16" id="i3j-AB-3hq"/>
+                                    <constraint firstItem="MNd-10-j3C" firstAttribute="top" secondItem="mdB-7K-Cbp" secondAttribute="top" constant="32" id="jL5-RR-Jfp"/>
+                                    <constraint firstItem="FnL-o3-WsT" firstAttribute="centerX" secondItem="mdB-7K-Cbp" secondAttribute="centerX" id="lm7-Xl-Ldg"/>
+                                    <constraint firstAttribute="trailing" secondItem="MNd-10-j3C" secondAttribute="trailing" constant="16" id="uy5-Yx-c7C"/>
+                                    <constraint firstAttribute="trailing" secondItem="h2f-ze-Yq1" secondAttribute="trailing" constant="16" id="vzk-Mm-3om"/>
+                                    <constraint firstItem="FnL-o3-WsT" firstAttribute="top" secondItem="MNd-10-j3C" secondAttribute="bottom" constant="50" id="yYN-Wu-vpO"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="mdB-7K-Cbp" firstAttribute="leading" secondItem="xEf-Jq-S5O" secondAttribute="leading" id="8Zk-AN-ow5"/>
+                            <constraint firstItem="mdB-7K-Cbp" firstAttribute="top" secondItem="xEf-Jq-S5O" secondAttribute="top" id="H0G-qf-tFO"/>
+                            <constraint firstItem="BMX-hh-nfP" firstAttribute="top" secondItem="mdB-7K-Cbp" secondAttribute="bottom" id="J2L-F8-hQ0"/>
+                            <constraint firstItem="zB2-r7-jz4" firstAttribute="top" secondItem="xEf-Jq-S5O" secondAttribute="top" id="NZH-M6-oOQ"/>
+                            <constraint firstAttribute="trailing" secondItem="mdB-7K-Cbp" secondAttribute="trailing" id="SpN-6r-OKf"/>
+                            <constraint firstItem="BMX-hh-nfP" firstAttribute="top" secondItem="zB2-r7-jz4" secondAttribute="bottom" id="c93-mg-BD3"/>
+                            <constraint firstItem="zB2-r7-jz4" firstAttribute="leading" secondItem="xEf-Jq-S5O" secondAttribute="leading" id="uDy-El-ips"/>
+                            <constraint firstAttribute="trailing" secondItem="zB2-r7-jz4" secondAttribute="trailing" id="yqQ-Vf-pbd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundColorView" destination="mdB-7K-Cbp" id="uNj-od-frr"/>
+                        <outlet property="backgroundImageView" destination="zB2-r7-jz4" id="R1d-60-NqA"/>
+                        <outlet property="closeButton" destination="6M9-fu-asV" id="LoQ-ms-wUH"/>
+                        <outlet property="createNewInterestButton" destination="h2f-ze-Yq1" id="b66-DT-Khg"/>
+                        <outlet property="hideKeyboardInputAccessoryView" destination="SFP-DP-sXu" id="NWe-WZ-nJL"/>
+                        <outlet property="newInterestDescriptionTextView" destination="FnL-o3-WsT" id="45U-zL-FLT"/>
+                        <outlet property="newInterestTitleTextField" destination="MNd-10-j3C" id="igt-OX-NR2"/>
+                        <outlet property="selectFeaturedImageButton" destination="l3N-PF-5NQ" id="t9a-hf-dZn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BCt-bK-oZP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="SFP-DP-sXu" userLabel="HideKeyboardInputAccessoryView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6l-nA-rvO" userLabel="HideKeyboardButton">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="hOy-AV-qbf"/>
+                                <constraint firstAttribute="height" constant="22" id="hSm-Dp-o5R"/>
+                            </constraints>
+                            <state key="normal" image="hideKeyboardButton"/>
+                            <connections>
+                                <action selector="hideKeyboard" destination="u4g-2h-LfU" eventType="touchUpInside" id="QHE-KX-DXK"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="n6l-nA-rvO" secondAttribute="bottom" constant="9" id="VV1-AC-atr"/>
+                        <constraint firstItem="n6l-nA-rvO" firstAttribute="top" secondItem="SFP-DP-sXu" secondAttribute="top" constant="9" id="WcU-gb-Kq4"/>
+                        <constraint firstAttribute="trailing" secondItem="n6l-nA-rvO" secondAttribute="trailing" constant="16" id="uqa-Eo-kmb"/>
+                    </constraints>
+                </view>
+            </objects>
+            <point key="canvasLocation" x="-484" y="770"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Camera" width="618" height="337"/>
@@ -1123,6 +1263,8 @@
         <image name="CloseButton" width="17" height="17"/>
         <image name="Refresh" width="13" height="15"/>
         <image name="add" width="20" height="20"/>
+        <image name="frame" width="343" height="44"/>
+        <image name="hideKeyboardButton" width="30" height="22"/>
         <image name="p6" width="2500" height="1667"/>
         <image name="profile1" width="806" height="674"/>
         <image name="r1" width="1500" height="1026"/>

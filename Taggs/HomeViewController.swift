@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
     fileprivate struct Storyboard {
         static let cellID = "Interest Cell"
         static let segueShowInterest = "Show Interest"
+        static let segueIDNewInterest = "CreateNewInterest"
     }
     
     
