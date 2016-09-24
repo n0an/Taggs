@@ -21,7 +21,7 @@ class TestObject: PFObject, PFSubclassing {
         
         self.registerSubclass()
         
-        print("TestObject initialize")
+        print("TestObject PFSubclass initialize")
 
     }
     

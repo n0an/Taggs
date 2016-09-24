@@ -7,33 +7,39 @@
 //
 
 import UIKit
+import Parse
 
-class Interest {
-    // MARK: - Public API
-    var title = ""
-    var description = ""
-    var numberOfMembers = 0
-    var numberOfPosts = 0
-    var featuredImage: UIImage!
+public class Interest: PFObject, PFSubclassing {
     
-    init(title: String, description: String, featuredImage: UIImage!) {
-        self.title = title
-        self.description = description
-        self.featuredImage = featuredImage
-        numberOfMembers = 1
-        numberOfPosts = 1
+    @NSManaged public var title: String!
+    @NSManaged public var interestDescriptipn: String!
+    @NSManaged public var numberOfMembers: Int
+    @NSManaged public var numberOfPosts: Int
+    @NSManaged public var featuredImageFila: PFFile!
+
+    public func incrementNumberOfPosts() {
+        numberOfPosts += 1
+        self.saveInBackground()
     }
     
-    // MARK: - Private
-    // dummy data
-    static func createInterests() -> [Interest] {
-        return [
-            Interest(title: "We Love Traveling Around the World", description: "We love backpack and adventures! We walked to Antartica yesterday, and camped with some cute pinguines, and talked about this wonderful app idea. 🐧⛺️✨", featuredImage: UIImage(named: "r1")!),
-            Interest(title: "Romance Stories", description: "We love romantic stories. We walked to Antartica yesterday, and camped with some cute pinguines, and talked about this wonderful app idea. 🐧⛺️✨", featuredImage: UIImage(named: "r2")!),
-            Interest(title: "iOS Dev", description: "Create beautiful apps. We walked to Antartica yesterday, and camped with some cute pinguines, and talked about this wonderful app idea. 🐧⛺️✨", featuredImage: UIImage(named: "r3")!),
-            Interest(title: "Race", description: "Cars and aircrafts and boats and sky. We walked to Antartica yesterday, and camped with some cute pinguines, and talked about this wonderful app idea. 🐧⛺️✨", featuredImage: UIImage(named: "r4")!),
-            Interest(title: "Personal Development", description: "Meet life with full presence. We walked to Antartica yesterday, and camped with some cute pinguines, and talked about this wonderful app idea. 🐧⛺️✨", featuredImage: UIImage(named: "r5")!),
-            Interest(title: "Reading News", description: "Get up to date with breaking-news. We walked to Antartica yesterday, and camped with some cute pinguines, and talked about this wonderful app idea. 🐧⛺️✨", featuredImage: UIImage(named: "r6")!),
-        ]
+    public func incrementNumberOfMembers() {
+        numberOfMembers += 1
+        self.saveInBackground()
     }
+    
+    
+    // MARK: - PFSubclassing
+    
+    override public class func initialize() {
+        
+        self.registerSubclass()
+        
+        print("Interest PFSubclass initialize")
+        
+    }
+
+    public static func parseClassName() -> String {
+        return "Interest"
+    }
+
 }
