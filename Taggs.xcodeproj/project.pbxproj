@@ -28,6 +28,8 @@
 		18B556731D96A72300879E93 /* NewInterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B556721D96A72300879E93 /* NewInterestViewController.swift */; };
 		18B556751D96C72200879E93 /* PopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B556741D96C72200879E93 /* PopTransitionAnimator.swift */; };
 		18B556771D96CA9C00879E93 /* SlideRightThenPopTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B556761D96CA9C00879E93 /* SlideRightThenPopTransitionAnimator.swift */; };
+		18B556791D96D17800879E93 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B556781D96D17800879E93 /* CardView.swift */; };
+		18B5567C1D96D37800879E93 /* InterestButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5567B1D96D37800879E93 /* InterestButton.swift */; };
 		65BCE015EDEED125141979AB /* Pods_Taggs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D728FC63936D539E16ED66 /* Pods_Taggs.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +57,8 @@
 		18B556721D96A72300879E93 /* NewInterestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewInterestViewController.swift; sourceTree = "<group>"; };
 		18B556741D96C72200879E93 /* PopTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopTransitionAnimator.swift; sourceTree = "<group>"; };
 		18B556761D96CA9C00879E93 /* SlideRightThenPopTransitionAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideRightThenPopTransitionAnimator.swift; sourceTree = "<group>"; };
+		18B556781D96D17800879E93 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		18B5567B1D96D37800879E93 /* InterestButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestButton.swift; sourceTree = "<group>"; };
 		59D76C75AC31268F86E3CCFD /* Pods-Taggs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taggs.release.xcconfig"; path = "Pods/Target Support Files/Pods-Taggs/Pods-Taggs.release.xcconfig"; sourceTree = "<group>"; };
 		9D269809F91F7C9B9B57C10D /* Pods-Taggs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taggs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taggs/Pods-Taggs.debug.xcconfig"; sourceTree = "<group>"; };
 		E8D728FC63936D539E16ED66 /* Pods_Taggs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Taggs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +111,7 @@
 				1801912F1D9468E400188FFC /* Home Screen */,
 				180191341D9469D000188FFC /* Interest Screen */,
 				18B5566F1D967A2100879E93 /* Comments Screen */,
+				18B5567A1D96D19B00879E93 /* Discover Screen */,
 				1801912C1D94672600188FFC /* Model */,
 				15EF1A491D96BC3C00442FB0 /* Transition Animators */,
 				1801911A1D94662E00188FFC /* Main.storyboard */,
@@ -157,6 +162,15 @@
 				18B556701D96A2E300879E93 /* NewCommentViewController.swift */,
 			);
 			name = "Comments Screen";
+			sourceTree = "<group>";
+		};
+		18B5567A1D96D19B00879E93 /* Discover Screen */ = {
+			isa = PBXGroup;
+			children = (
+				18B556781D96D17800879E93 /* CardView.swift */,
+				18B5567B1D96D37800879E93 /* InterestButton.swift */,
+			);
+			name = "Discover Screen";
 			sourceTree = "<group>";
 		};
 		B655E7662EDCA0024D66C665 /* Frameworks */ = {
@@ -306,8 +320,10 @@
 				1801912B1D94672000188FFC /* Interest.swift in Sources */,
 				180191311D94694100188FFC /* InterestViewController.swift in Sources */,
 				180191381D95A09E00188FFC /* Post.swift in Sources */,
+				18B5567C1D96D37800879E93 /* InterestButton.swift in Sources */,
 				180191331D94697000188FFC /* InterestHeaderView.swift in Sources */,
 				18B556751D96C72200879E93 /* PopTransitionAnimator.swift in Sources */,
+				18B556791D96D17800879E93 /* CardView.swift in Sources */,
 				180191171D94662E00188FFC /* AppDelegate.swift in Sources */,
 				180191291D9466EC00188FFC /* HomeViewController.swift in Sources */,
 				180191361D95A08800188FFC /* User.swift in Sources */,
