@@ -23,6 +23,7 @@
 		18B5566A1D95B5E000879E93 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B556691D95B5E000879E93 /* NewPostViewController.swift */; };
 		18B5566C1D9679CF00879E93 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5566B1D9679CF00879E93 /* Comment.swift */; };
 		18B5566E1D967A1800879E93 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5566D1D967A1800879E93 /* CommentsViewController.swift */; };
+		18B556711D96A2E300879E93 /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B556701D96A2E300879E93 /* NewCommentViewController.swift */; };
 		65BCE015EDEED125141979AB /* Pods_Taggs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D728FC63936D539E16ED66 /* Pods_Taggs.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		18B556691D95B5E000879E93 /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		18B5566B1D9679CF00879E93 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		18B5566D1D967A1800879E93 /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		18B556701D96A2E300879E93 /* NewCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
 		59D76C75AC31268F86E3CCFD /* Pods-Taggs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taggs.release.xcconfig"; path = "Pods/Target Support Files/Pods-Taggs/Pods-Taggs.release.xcconfig"; sourceTree = "<group>"; };
 		9D269809F91F7C9B9B57C10D /* Pods-Taggs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taggs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taggs/Pods-Taggs.debug.xcconfig"; sourceTree = "<group>"; };
 		E8D728FC63936D539E16ED66 /* Pods_Taggs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Taggs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +134,7 @@
 			children = (
 				18B5566D1D967A1800879E93 /* CommentsViewController.swift */,
 				154326121D969769004E9D9C /* CommentTableViewCell.swift */,
+				18B556701D96A2E300879E93 /* NewCommentViewController.swift */,
 			);
 			name = "Comments Screen";
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1801912E1D94680200188FFC /* InterestCollectionViewCell.swift in Sources */,
+				18B556711D96A2E300879E93 /* NewCommentViewController.swift in Sources */,
 				1801912B1D94672000188FFC /* Interest.swift in Sources */,
 				180191311D94694100188FFC /* InterestViewController.swift in Sources */,
 				180191381D95A09E00188FFC /* Post.swift in Sources */,

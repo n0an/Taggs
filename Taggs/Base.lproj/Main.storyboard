@@ -55,7 +55,7 @@
                                                 <rect key="frame" x="0.0" y="22" width="375" height="300"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PdD-pg-P8M" id="tQ0-P9-K6I">
-                                                    <frame key="frameInset" width="375" height="300"/>
+                                                    <frame key="frameInset" width="375" height="299"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CtL-Cm-BoA" customClass="CardView" customModule="Taggs" customModuleProvider="target">
@@ -188,7 +188,7 @@
                                             </collectionViewFlowLayout>
                                             <cells>
                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Interest Cell" id="dUx-ZZ-unu" customClass="InterestCollectionViewCell" customModule="Taggs" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="69.5" width="280" height="380"/>
+                                                    <rect key="frame" x="20" y="70" width="280" height="380"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="380"/>
@@ -344,7 +344,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Bm6-nE-6S1">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableHeaderView" clipsSubviews="YES" contentMode="scaleToFill" id="XQW-EY-fLi" customClass="InterestHeaderView" customModule="Taggs" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="200"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="r1" translatesAutoresizingMaskIntoConstraints="NO" id="kCu-zL-2lr"/>
@@ -425,10 +425,10 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostCellWithImage" rowHeight="387" id="z2j-ZV-OyV" customClass="PostTableViewCell" customModule="Taggs" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="222" width="1000" height="387"/>
+                                        <rect key="frame" x="0.0" y="222" width="600" height="387"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z2j-ZV-OyV" id="CjT-rS-tEy">
-                                            <frame key="frameInset" width="1000" height="387"/>
+                                            <frame key="frameInset" width="600" height="386"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile1" translatesAutoresizingMaskIntoConstraints="NO" id="2HJ-vQ-4AA">
@@ -526,10 +526,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostCellWithoutImage" rowHeight="171" id="TlW-ba-feR" customClass="PostTableViewCell" customModule="Taggs" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="609" width="1000" height="171"/>
+                                        <rect key="frame" x="0.0" y="609" width="600" height="171"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TlW-ba-feR" id="G4d-eQ-VU5">
-                                            <frame key="frameInset" width="1000" height="171"/>
+                                            <frame key="frameInset" width="600" height="170"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile1" translatesAutoresizingMaskIntoConstraints="NO" id="jcX-ZB-JdV">
@@ -997,6 +997,9 @@
                                         <real key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="actionNewCommentButtonTapped:" destination="nYK-fT-aJi" eventType="touchUpInside" id="oxd-Ym-3AF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1011,6 +1014,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="euz-mz-S8Q"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1000"/>
                     <connections>

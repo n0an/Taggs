@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Spring
 
 class CommentsViewController: UIViewController {
     
@@ -16,7 +17,7 @@ class CommentsViewController: UIViewController {
     // MARK: - OUTLETS
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var newCommentButton: UIButton!
+    @IBOutlet weak var newCommentButton: DesignableButton!
     
     // MARK: - PRIVATE PROPERTIES
     
@@ -28,9 +29,10 @@ class CommentsViewController: UIViewController {
         static let cellIDComment = "Comment Cell"
         static let segueIDShowCommentVC = "Show Comment Composer"
     }
-
+    
 
     // MARK: - viewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,7 +53,7 @@ class CommentsViewController: UIViewController {
         tableView.separatorColor = UIColor.clear
         tableView.allowsSelection = false
         
-        
+        configureButtonAppearance()
 
         
     }
@@ -59,7 +61,7 @@ class CommentsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         
     }
@@ -73,6 +75,33 @@ class CommentsViewController: UIViewController {
         
     }
     
+    fileprivate func configureButtonAppearance() {
+        newCommentButton.borderWidth = 1.0
+        newCommentButton.cornerRadius = 20.0
+        newCommentButton.borderColor = UIColor(red: 85.0/255, green: 172.0/255, blue: 238.0/255, alpha: 1.0)
+        
+    }
+
+    
+    @IBAction func actionNewCommentButtonTapped(_ sender: DesignableButton) {
+        
+        // animation
+        sender.animation = "pop"
+        sender.curve = "spring"
+        sender.duration = 1.5
+        sender.damping = 0.1
+        sender.velocity = 0.2
+        sender.animate()
+        
+        self.performSegue(withIdentifier: Storyboard.segueIDShowCommentVC, sender: nil)
+    }
+    
+    
+    // MARK: - NAVIGATION
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
     
 
 }

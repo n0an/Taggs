@@ -124,7 +124,8 @@ class InterestViewController: UIViewController {
     }
 
 
-    
+    // MARK: - ACTIONS
+
     @IBAction func actionNewPostButtonTapped(_ sender: DesignableButton) {
         
         // animation
@@ -139,6 +140,9 @@ class InterestViewController: UIViewController {
         
     }
     
+    
+    
+    // MARK: - NAVIGATION
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Storyboard.segueIDShowComments {
