@@ -21,6 +21,8 @@ class HomeViewController: UIViewController {
     // MARK: - UICollectionViewDataSource
     fileprivate var interests = Interest.createInterests()
     fileprivate var slideRightTransitionAnimator = SlideRightTransitionAnimator()
+    fileprivate var popTransitionAnimator = PopTransitionAnimator()
+    fileprivate var slideRightThenPopTransitionAnimator = SlideRightThenPopTransitionAnimator()
     
     fileprivate struct Storyboard {
         static let cellID = "Interest Cell"
@@ -67,6 +69,9 @@ class HomeViewController: UIViewController {
             let interest = cell.interest
             
             let navigationViewController = segue.destination as! UINavigationController
+            
+            navigationViewController.transitioningDelegate = popTransitionAnimator
+            
             let interestViewController = navigationViewController.topViewController as! InterestViewController
             
             interestViewController.interest = interest
