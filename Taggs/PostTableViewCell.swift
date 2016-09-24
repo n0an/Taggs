@@ -47,6 +47,8 @@ class PostTableViewCell: UITableViewCell {
         postImageView?.layer.cornerRadius = 5.0
         postImageView?.layer.masksToBounds = true
         
+        self.layoutIfNeeded()
+
         userProfileImageView.layer.cornerRadius = userProfileImageView.bounds.size.width/2
         userProfileImageView.clipsToBounds = true
         

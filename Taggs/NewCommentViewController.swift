@@ -31,7 +31,7 @@ class NewCommentViewController: UIViewController {
         commentTextView.becomeFirstResponder()
         commentTextView.text = ""
 
-        
+        self.view.layoutIfNeeded()
         currentUserProfileImageView.layer.cornerRadius = currentUserProfileImageView.bounds.width/2
         currentUserProfileImageView.layer.masksToBounds = true
         

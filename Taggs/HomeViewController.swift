@@ -48,6 +48,8 @@ class HomeViewController: UIViewController {
     }
     
     func configureUserProfile() {
+        
+        self.view.layoutIfNeeded()
         // configure image button
         currentUserProfileImageButton.contentMode = .scaleAspectFill
         currentUserProfileImageButton.layer.cornerRadius = currentUserProfileImageButton.bounds.width / 2
