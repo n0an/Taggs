@@ -774,7 +774,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3225" y="-615"/>
+            <point key="canvasLocation" x="3323" y="-626"/>
         </scene>
         <!--Comments View Controller-->
         <scene sceneID="vAo-AP-DQp">
