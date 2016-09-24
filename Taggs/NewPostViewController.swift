@@ -89,6 +89,19 @@ class NewPostViewController: UIViewController {
         
     }
     
+    // TODO: - create a new post and send it to parse
+    @IBAction func dismiss() {
+        
+        postContentTextView.resignFirstResponder()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func post() {
+        
+        postContentTextView.resignFirstResponder()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     
     // MARK: - TEXT VIEW HANDLERS

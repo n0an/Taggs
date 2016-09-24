@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Spring
 
 class InterestViewController: UIViewController {
     
@@ -15,6 +16,10 @@ class InterestViewController: UIViewController {
     
     // MARK: - Private
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var newPostButton: DesignableButton!
+
+    
+    
     fileprivate let tableHeaderHeight: CGFloat = 350.0
     fileprivate let tableHeaderCutAway: CGFloat = 50.0
     
@@ -29,6 +34,7 @@ class InterestViewController: UIViewController {
         static let cellIDWithOutImage = "PostCellWithoutImage"
         
         static let segueIDShowComments = "Show Comments"
+        static let segueIDNewPostVC = "Show Post Composer"
 
     }
     
@@ -56,6 +62,8 @@ class InterestViewController: UIViewController {
         headerView.layer.mask = headerMaskLayer
         
         updateHeaderView()
+        
+        configureButtonAppearance()
         
         fetchPosts()
         
@@ -104,13 +112,33 @@ class InterestViewController: UIViewController {
         
     }
     
-    func fetchPosts()
-    {
+    func fetchPosts() {
         posts = Post.allPosts
         tableView.reloadData()
     }
+    
+    fileprivate func configureButtonAppearance() {
+        newPostButton.borderWidth = 1.0
+        newPostButton.cornerRadius = 20.0
+        newPostButton.borderColor = UIColor(red: 85.0/255, green: 172.0/255, blue: 238.0/255, alpha: 1.0)
+        
+    }
+
 
     
+    @IBAction func actionNewPostButtonTapped(_ sender: DesignableButton) {
+        
+        // animation
+        sender.animation = "pop"
+        sender.curve = "spring"
+        sender.duration = 1.5
+        sender.damping = 0.1
+        sender.velocity = 0.2
+        sender.animate()
+
+        self.performSegue(withIdentifier: Storyboard.segueIDNewPostVC, sender: nil)
+        
+    }
     
 
 }

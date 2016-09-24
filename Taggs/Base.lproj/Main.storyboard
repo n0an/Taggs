@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6TS-HR-B9t">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="d2C-0R-ZJ8">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -51,10 +52,10 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Interest Cell" rowHeight="300" id="PdD-pg-P8M" customClass="DiscoverTableViewCell" customModule="Taggs" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="22" width="375" height="300"/>
+                                                <rect key="frame" x="0.0" y="22" width="1000" height="300"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PdD-pg-P8M" id="tQ0-P9-K6I">
-                                                    <frame key="frameInset" width="375" height="299"/>
+                                                    <frame key="frameInset" width="1000" height="299"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CtL-Cm-BoA" customClass="CardView" customModule="Taggs" customModuleProvider="target">
@@ -187,7 +188,7 @@
                                             </collectionViewFlowLayout>
                                             <cells>
                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Interest Cell" id="dUx-ZZ-unu" customClass="InterestCollectionViewCell" customModule="Taggs" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="70" width="280" height="380"/>
+                                                    <rect key="frame" x="20" y="0.0" width="280" height="380"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="380"/>
@@ -622,11 +623,25 @@
                                     <outlet property="delegate" destination="2zB-ZF-pn5" id="xeN-1o-0BS"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwU-Ju-Xhg" customClass="DesignableButton" customModule="Spring">
+                                <color key="backgroundColor" red="0.33333333329999998" green="0.67450980390000004" blue="0.93333333330000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="fBs-Nw-qDo"/>
+                                    <constraint firstAttribute="width" secondItem="XwU-Ju-Xhg" secondAttribute="height" multiplier="1:1" id="tRf-HZ-qCz"/>
+                                </constraints>
+                                <color key="tintColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="add"/>
+                                <connections>
+                                    <action selector="actionNewPostButtonTapped:" destination="2zB-ZF-pn5" eventType="touchUpInside" id="aPh-3u-cXU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Bm6-nE-6S1" firstAttribute="leading" secondItem="FPL-rl-0yL" secondAttribute="leading" id="B7i-6d-Uhh"/>
+                            <constraint firstItem="eeL-b7-Sui" firstAttribute="top" secondItem="XwU-Ju-Xhg" secondAttribute="bottom" constant="16" id="Bph-Eh-zyJ"/>
                             <constraint firstItem="Bm6-nE-6S1" firstAttribute="top" secondItem="FPL-rl-0yL" secondAttribute="top" id="Cz5-Yy-TuP"/>
+                            <constraint firstAttribute="trailing" secondItem="XwU-Ju-Xhg" secondAttribute="trailing" constant="16" id="OtQ-Hg-FwP"/>
                             <constraint firstAttribute="trailing" secondItem="Bm6-nE-6S1" secondAttribute="trailing" id="cLo-PF-ZBa"/>
                             <constraint firstItem="eeL-b7-Sui" firstAttribute="top" secondItem="Bm6-nE-6S1" secondAttribute="bottom" id="lze-0b-8l6"/>
                         </constraints>
@@ -637,6 +652,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1200"/>
                     <connections>
+                        <outlet property="newPostButton" destination="XwU-Ju-Xhg" id="dMt-Ma-wh0"/>
                         <outlet property="tableView" destination="Bm6-nE-6S1" id="PYH-Bm-Bfz"/>
                         <segue destination="6TS-HR-B9t" kind="presentation" identifier="Show Post Composer" id="fkt-Sb-E4J"/>
                     </connections>
