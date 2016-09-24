@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 import Spring
+import Parse
 
 class NewInterestViewController: UIViewController {
     
@@ -83,6 +84,83 @@ class NewInterestViewController: UIViewController {
         
     }
     
+    func createNewInterest() {
+        
+        let featuredImageFile = createFileFrom(image: self.featuredImage)
+        
+        let newInterest = PFObject(className: "Interest")
+        newInterest["title"] = newInterestTitleTextField.text!
+        newInterest["interestDescription"] = newInterestDescriptionTextView.text!
+        newInterest["numberOfMembers"] = 1
+        newInterest["numberOfPosts"] = 0
+        newInterest["featuredImageFile"] = featuredImageFile
+        
+        newInterest.saveInBackground(block: { (success, error) in
+            if error == nil {
+                // success
+                // update the current user's interestIds
+                let currentUser = PFUser.current()!
+                if var interestIds = currentUser["interestIds"] as? [String] {
+                    interestIds.append(newInterest.objectId!)
+                } else {
+                    currentUser["interestIds"] = [newInterest.objectId!]
+                }
+                
+                currentUser.saveInBackground(block: { (success, error) in
+                    if error != nil {
+                        print("\(error!.localizedDescription)")
+                    }
+                })
+                
+            } else {
+                // fail
+                print("\(error!.localizedDescription)")
+            }
+        })
+
+        
+    }
+    
+    
+    
+    // ===TOUSE===
+    // SHRINK RESIZE IMAGE
+    
+    // MARK: - IMAGE HANDLER
+    
+    struct ImageSize {
+        static let height: CGFloat = 480.0
+    }
+    
+    func createFileFrom(image: UIImage) -> PFFile! {
+        
+        let ratio = image.size.width / image.size.height
+        
+        let resizedImage = resizeImage(originalImage: image, toWidth: ImageSize.height * ratio, andHeight: ImageSize.height)
+        
+        let imageData = UIImageJPEGRepresentation(resizedImage, 0.8)!
+        
+        return PFFile(name: "image.jpg", data: imageData)
+    }
+    
+    func resizeImage(originalImage: UIImage, toWidth width: CGFloat, andHeight height: CGFloat) -> UIImage {
+        
+        let newSize = CGSize(width: width, height: height)
+        let newRectangle = CGRect(x: 0, y: 0, width: width, height: height)
+        
+        UIGraphicsBeginImageContext(newSize)
+        
+        originalImage.draw(in: newRectangle)
+        
+        let resizedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        return resizedImage
+    }
+
+    
+    
+    
     // MARK: - ACTIONS
 
     
@@ -106,8 +184,6 @@ class NewInterestViewController: UIViewController {
 
     }
     
-   
-    
     
     @IBAction func dismiss(_ sender: UIButton) {
         hideKeyboard()
@@ -122,8 +198,8 @@ class NewInterestViewController: UIViewController {
         } else if featuredImage == nil {
             shakePhotoButton()
         } else {
-            // create a new interest
-            // ..
+            
+            createNewInterest()
             
             self.hideKeyboard()
             
