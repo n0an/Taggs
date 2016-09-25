@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 protocol DiscoverTableViewCellDelegate {
     func joinButtonClicked(interest: Interest!)
@@ -40,19 +41,69 @@ class DiscoverTableViewCell: UITableViewCell {
     func updateUI() {
         
         interestTitleLabel.text! = interest.title
-//        interestFeaturedImage.image! = interest.featuredImage
-        interestDescriptionLabel.text! = interest.description
         
-        joinButton.setTitle("→", for: .normal)
+        interest.featuredImageFile.getDataInBackground { (data, error) in
+            if error == nil {
+                
+                if let imageData = data {
+                    self.interestFeaturedImage.image = UIImage(data: imageData)!
+                }
+                
+            } else {
+                print("\(error?.localizedDescription)")
+            }
+        }
+    
+        interestDescriptionLabel.text! = interest.interestDescription
+        
+        // join button
+        
+        let currentUser = User.current()!
+        
+        if currentUser.isMemberOf(interestId: interest.objectId!) {
+            joinButton.setTitle("→", for: .normal)
+
+        } else {
+            
+            joinButton.setTitle("Join", for: .normal)
+        }
+        
+        // change the color
+        
+        let randomColor = UIColor.randomColor()
+        joinButton.color = randomColor
+        
+        interestTitleLabel.textColor = randomColor
         
     }
     
     // MARK: - ACTIONS
 
     @IBAction func joinButtonClicked(_ sender: InterestButton) {
-        delegate?.joinButtonClicked(interest: interest)
+        
+        let currentUser = User.current()!
+        
+        if !currentUser.isMemberOf(interestId: interest.objectId!) {
+            // let user to joing the interest
+            currentUser.joinInterest(interestId: interest.objectId!)
+            
+            interest.incrementNumberOfMembers()
+            
+            joinButton.setTitle("→", for: .normal)
+            
+        } else {
+            delegate?.joinButtonClicked(interest: interest)
+
+        }
+        
     }
 }
+
+
+
+
+
+
 
 
 

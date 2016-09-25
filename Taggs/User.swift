@@ -19,11 +19,13 @@ class User: PFUser {
     }
     
     public func joinInterest(interestId: String) {
-        
+        print("self.interestIds BEFORE = \(self.interestIds)")
+
         self.interestIds.insert(interestId, at: 0)
+        print("self.interestIds AFTER = \(self.interestIds)")
         self.saveInBackground { (success, error) in
             if error != nil {
-                print("\(error!.localizedDescription)")
+                print("ERRRRRR: \(error!.localizedDescription)")
             }
         }
     }

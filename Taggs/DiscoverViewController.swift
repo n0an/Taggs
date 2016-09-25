@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import Parse
 
 class DiscoverViewController: UIViewController {
     
+    // MARK: - OUTLETS
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var refreshButton: UIButton!
     @IBOutlet weak var searchBarInputAccessoryView: UIView!
+    
+    // MARK: - PRIVATE
     
     fileprivate var searchText: String! {
         didSet {
@@ -21,8 +25,16 @@ class DiscoverViewController: UIViewController {
         }
     }
     
+    fileprivate enum Storyboard {
+        static let segueIdShowInterest = "Show Discover Interest"
+        static let cellIdInterest = "Interest Cell"
+    }
+    
     fileprivate var interests = [Interest]()
     fileprivate var popTransitionAnimator = PopTransitionAnimator()
+    
+    
+    // MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,18 +52,78 @@ class DiscoverViewController: UIViewController {
         
         searchBar.delegate = self
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         suggestInterests()
     }
     
+    // MARK: - HELPER METHODS
+    
     func searchInterestsFor(key: String) {
+        
+        let pred = NSPredicate(format: "title BEGINSWITH %@ OR interestDescription BEGINSWITH %@", argumentArray: [key, key])
+
+        let query = PFQuery(className: Interest.parseClassName(), predicate: pred)
+        
+        query.order(byDescending: "updatedAt")
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error == nil {
+                
+                if let objects = objects as [PFObject]! {
+                    self.interests.removeAll()
+                    
+                    for interesetObject in objects {
+                        let interest = interesetObject as! Interest
+                        
+                        self.interests.append(interest)
+                    }
+                    self.tableView.reloadData()
+                }
+                
+            } else {
+                print("\(error?.localizedDescription)")
+            }
+        }
+        
         interests = [Interest]()
         tableView.reloadData()
     }
     
     func suggestInterests() {
-        interests = [Interest]()
-        tableView.reloadData()
+        
+        let query = PFQuery(className: Interest.parseClassName())
+        
+        query.order(byDescending: "updatedAt")
+        
+        query.limit = 20
+        
+        query.findObjectsInBackground { (objects, error) in
+            if error == nil {
+                
+                if let objects = objects as [PFObject]! {
+                    self.interests.removeAll()
+                    
+                    for interesetObject in objects {
+                        let interest = interesetObject as! Interest
+                        
+                        self.interests.append(interest)
+                    }
+                    self.tableView.reloadData()
+                }
+                
+            } else {
+                print("\(error?.localizedDescription)")
+            }
+        }
+        
+        
     }
+    
+    // MARK: - ACTIONS
     
     @IBAction func dismiss(_ sender: UIButton) {
         
@@ -62,18 +134,20 @@ class DiscoverViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    
     @IBAction func refreshButtonClicked(_ sender: UIButton) {
-        //
+        
     }
+    
     
     @IBAction func hideKeyboardButtonClicked(_ sender: UIButton) {
         searchBar.resignFirstResponder()
     }
     
-    // MARK: - Navigation
+    // MARK: - NAVIGATION
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Show Discover Interest" {
+        if segue.identifier == Storyboard.segueIdShowInterest {
             let navVC = segue.destination as! UINavigationController
             let interestVC = navVC.topViewController as! InterestViewController
             interestVC.interest = sender as! Interest
@@ -84,6 +158,8 @@ class DiscoverViewController: UIViewController {
     
     
 }
+
+// MARK: - UISearchBarDelegate
 
 extension DiscoverViewController : UISearchBarDelegate {
     
@@ -97,6 +173,8 @@ extension DiscoverViewController : UISearchBarDelegate {
     }
 }
 
+// MARK: - UITableViewDataSource
+
 extension DiscoverViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -106,7 +184,7 @@ extension DiscoverViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Interest Cell", for: indexPath) as! DiscoverTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIdInterest, for: indexPath) as! DiscoverTableViewCell
         
         cell.interest = interests[indexPath.row]
         cell.delegate = self
@@ -118,11 +196,12 @@ extension DiscoverViewController: UITableViewDataSource {
     
 }
 
+// MARK: - ===DiscoverTableViewCellDelegate===
 extension DiscoverViewController : DiscoverTableViewCellDelegate {
     
     func joinButtonClicked(interest: Interest!) {
         
-        performSegue(withIdentifier: "Show Discover Interest", sender: interest)
+        performSegue(withIdentifier: Storyboard.segueIdShowInterest, sender: interest)
         
         
     }

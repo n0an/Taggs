@@ -10,7 +10,11 @@ import UIKit
 
 extension UIColor {
     class func randomColor() -> UIColor {
-        let random = Int(arc4random()) % 5
+        
+//        let random = Int(arc4random()) % 5
+        
+        let random = arc4random_uniform(10)
+        
         switch (random) {
         case 1: return UIColor(hex: "F44336")
         case 2: return UIColor(hex: "9C27B0")

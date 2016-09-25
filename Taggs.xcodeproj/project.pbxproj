@@ -192,9 +192,9 @@
 			isa = PBXGroup;
 			children = (
 				15F414511D96DFE300FE1883 /* DiscoverViewController.swift */,
+				15F4144F1D96DE2A00FE1883 /* DiscoverTableViewCell.swift */,
 				18B556781D96D17800879E93 /* CardView.swift */,
 				18B5567B1D96D37800879E93 /* InterestButton.swift */,
-				15F4144F1D96DE2A00FE1883 /* DiscoverTableViewCell.swift */,
 			);
 			name = "Discover Screen";
 			sourceTree = "<group>";
