@@ -14,6 +14,7 @@ protocol PostTableViewCellDelegate {
 }
 
 class PostTableViewCell: UITableViewCell {
+    
     // MARK: - Public API
     var post: Post! {
         didSet {
@@ -33,15 +34,55 @@ class PostTableViewCell: UITableViewCell {
     
     // MARK: - Private
     
-    fileprivate var currentUserDidLike: Bool = false
+//    fileprivate var currentUserDidLike: Bool {
+//        get {
+//            if let ids = post.likedUserIds {
+//                if ids.contains(User.current()!.objectId!) {
+//                    return true
+//                }
+//            }
+//            return false
+//        }
+//    }
     
     fileprivate func updateUI() {
-//        userProfileImageView.image = post.user.profileImage
-//        
-//        userNameLabel?.text = post.user.fullName
-//        createdAtLabel?.text = post.createdAt
-//        postImageView?.image = post.postImage
+        
+        // --- GETTING DATA FROM PARSE ---
+        
+        let user = post.user as! User
+
+        user.profileImageFile?.getDataInBackground { (data, error) in
+            if error == nil {
+                if let imageData = data {
+                    self.userProfileImageView.image = UIImage(data: imageData)!
+                }
+            } else {
+                print("\(error?.localizedDescription)")
+            }
+        }
+        
+        userNameLabel.text = post.user.username!
+        
+        createdAtLabel.text = Date.shortStringFromDate(date: post.createdAt!)
+        
+        post.postImageFile?.getDataInBackground { (data, error) in
+            
+            if error == nil {
+                
+                if let imageData = data {
+                    self.postImageView.image = UIImage(data: imageData)!
+                }
+                
+            } else {
+                print("\(error?.localizedDescription)")
+            }
+            
+        }
+        
         postTextLabel?.text = post.postText
+        
+        // ---------------------------
+        
         
         // rounded post image view, user profile image
         postImageView?.layer.cornerRadius = 5.0
@@ -70,17 +111,15 @@ class PostTableViewCell: UITableViewCell {
     
     
     @IBAction func likeButtonClicked(_ sender: DesignableButton) {
+
         
-//        post.userDidLike = !post.userDidLike
-//        if post.userDidLike {
-//            post.numberOfLikes += 1
-//        } else {
-//            post.numberOfLikes -= 1
-//        }
+        if currentUserLikes() {
+            post.dislike()
+        } else {
+            post.like()
+        }
         
         likeButton.setTitle("⭐️ \(post.numberOfLikes) Likes", for: .normal)
-        
-//        currentUserDidLike = post.userDidLike
         
         changeLikeButtonColor()
         
@@ -98,13 +137,25 @@ class PostTableViewCell: UITableViewCell {
     
     
     fileprivate func changeLikeButtonColor() {
-        if currentUserDidLike {
+        
+        if currentUserLikes() {
             likeButton.borderColor = UIColor.red
             likeButton.tintColor = UIColor.red
         } else {
             likeButton.borderColor = UIColor.lightGray
             likeButton.tintColor = UIColor.lightGray
         }
+        
+    }
+    
+    func currentUserLikes() -> Bool {
+        
+        if let ids = post.likedUserIds {
+            if ids.contains(User.current()!.objectId!) {
+                return true
+            }
+        }
+        return false
         
     }
     

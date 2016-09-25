@@ -8,6 +8,7 @@
 
 import UIKit
 import Spring
+import Parse
 
 class InterestViewController: UIViewController {
     
@@ -64,7 +65,6 @@ class InterestViewController: UIViewController {
         
         configureButtonAppearance()
         
-        fetchPosts()
         
     }
     
@@ -82,6 +82,8 @@ class InterestViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        fetchPosts()
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -111,9 +113,81 @@ class InterestViewController: UIViewController {
         
     }
     
+    // MARK: __PARSE METHODS__
+    
     func fetchPosts() {
         
-        tableView.reloadData()
+//        let currentUser = User.current()!
+        
+        let postQuery = PFQuery(className: Post.parseClassName())
+        
+        postQuery.order(byDescending: "createdAt")
+        
+        postQuery.whereKey("interestId", equalTo: interest.objectId!)
+        
+        postQuery.includeKey("user")
+        
+        postQuery.findObjectsInBackground(block: { (objects, error) in
+            
+            if error == nil {
+                
+                if let postsObjects = objects as [PFObject]! {
+                    self.posts.removeAll()
+                    
+                    for postObject in postsObjects {
+                        let post = postObject as! Post
+                        self.posts.append(post)
+                    }
+                    
+                    self.tableView.reloadData()
+                }
+                
+            } else {
+                print("\(error?.localizedDescription)")
+            }
+            
+            
+        })
+        
+//        if interest.numberOfPosts > 0 {
+//            
+//            
+//        }
+        
+        
+        
+//        let interestIds = currentUser.interestIds
+//        
+//        if interestIds.count > 0 {
+//            
+//            let interestQuery = PFQuery(className: Interest.parseClassName())
+//            
+//            interestQuery.order(byDescending: "updatedAt")
+//            
+//            interestQuery.whereKey("objectId", containedIn: interestIds)
+//            
+//            interestQuery.findObjectsInBackground(block: { (objects, error) in
+//                
+//                if error == nil {
+//                    if let interestObjects = objects as [PFObject]! {
+//                        self.interests.removeAll()
+//                        
+//                        for interestObject in interestObjects {
+//                            let interest = interestObject as! Interest
+//                            self.interests.append(interest)
+//                        }
+//                        
+//                        self.collectionView.reloadData()
+//                    }
+//                } else {
+//                    print("\(error?.localizedDescription)")
+//                }
+//                
+//            })
+//        }
+        
+        
+        
     }
     
     fileprivate func configureButtonAppearance() {
