@@ -36,6 +36,8 @@ class NewPostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         self.view.layoutIfNeeded()
         
         postContentTextView.becomeFirstResponder()
@@ -110,6 +112,12 @@ class NewPostViewController: UIViewController {
         newPost.saveInBackground { (success, error) in
             if error == nil {
                 self.interest.incrementNumberOfPosts()
+                
+                let center = NotificationCenter.default
+                let notification = NSNotification(name: NSNotification.Name(rawValue: "NewPostCreated"), object: nil, userInfo: ["newPostObject" : newPost])
+                center.post(notification as Notification)
+                
+                
             } else {
                 print("\(error?.localizedDescription)")
             }

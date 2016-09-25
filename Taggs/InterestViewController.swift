@@ -84,7 +84,39 @@ class InterestViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
         fetchPosts()
+        
+        // CATCHING NOTIFICATION FROM NewPostViewController
+        
+        let center = NotificationCenter.default
+        let queue = OperationQueue.main
+        
+        
+        center.addObserver(forName: NSNotification.Name(rawValue: "NewPostCreated"), object: nil, queue: queue, using: { (notification) in
+            
+            if let newPost = notification.userInfo?["newPostObject"] as? Post {
+                if !self.postWasDisplayed(newPost) {
+                    self.posts.insert(newPost, at: 0)
+                    self.tableView.reloadData()
+                }
+            }
+            
+        })
+
+        
+        
     }
+    
+    func postWasDisplayed(_ newPost: Post) -> Bool {
+        for post in posts {
+            if post.objectId! == newPost.objectId! {
+                return true
+            }
+        }
+        return false
+    }
+
+    
+    
     
     override var prefersStatusBarHidden: Bool {
         return true

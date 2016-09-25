@@ -63,7 +63,35 @@ class CommentsViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         fetchComments()
+        
+        // CATCHING NOTIFICATION FROM NewInterestViewController
+        
+        let center = NotificationCenter.default
+        let queue = OperationQueue.main
+        
+        center.addObserver(forName: NSNotification.Name(rawValue: "NewCommentCreated"), object: nil, queue: queue, using: { (notification) in
+            
+            if let newComment = notification.userInfo?["newCommentObject"] as? Comment {
+                if !self.commentWasDisplayed(newComment) {
+                    self.comments.insert(newComment, at: 0)
+                    self.tableView.reloadData()
+                }
+            }
+            
+        })
 
+        
+
+    }
+    
+    
+    func commentWasDisplayed(_ newComment: Comment) -> Bool {
+        for comment in comments {
+            if comment.objectId! == newComment.objectId! {
+                return true
+            }
+        }
+        return false
     }
 
     // MARK: - HELPER METHODS

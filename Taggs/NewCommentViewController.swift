@@ -95,6 +95,14 @@ class NewCommentViewController: UIViewController {
                 
                 // comment has been added
                 
+                // POSTING NOTIFICATION, IT WILL BE CATCHED BY CommentsViewController, and run fetching and updating tableView with comments
+                
+                let center = NotificationCenter.default
+                let notification = NSNotification(name: NSNotification.Name(rawValue: "NewCommentCreated"), object: nil, userInfo: ["newCommentObject" : newComment])
+                center.post(notification as Notification)
+                
+                
+                
             } else {
                 print("\(error?.localizedDescription)")
             }
