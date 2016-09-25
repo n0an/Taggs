@@ -83,34 +83,22 @@ class NewInterestViewController: UIViewController {
         present(imagePicker, animated: true, completion: nil)
         
     }
-    
+    // MARK: __PARSE METHODS__
     func createNewInterest() {
         
         let featuredImageFile = createFileFrom(image: self.featuredImage)
         
-        let newInterest = PFObject(className: "Interest")
-        newInterest["title"] = newInterestTitleTextField.text!
-        newInterest["interestDescription"] = newInterestDescriptionTextView.text!
-        newInterest["numberOfMembers"] = 1
-        newInterest["numberOfPosts"] = 0
-        newInterest["featuredImageFile"] = featuredImageFile
+        
+        let newInterest = Interest(title: newInterestTitleTextField.text!, interestDescription: newInterestDescriptionTextView.text!, imageFile: featuredImageFile!, numberOfMembers: 1, numberOfPosts: 0)
         
         newInterest.saveInBackground(block: { (success, error) in
             if error == nil {
                 // success
                 // update the current user's interestIds
-                let currentUser = PFUser.current()!
-                if var interestIds = currentUser["interestIds"] as? [String] {
-                    interestIds.append(newInterest.objectId!)
-                } else {
-                    currentUser["interestIds"] = [newInterest.objectId!]
-                }
                 
-                currentUser.saveInBackground(block: { (success, error) in
-                    if error != nil {
-                        print("\(error!.localizedDescription)")
-                    }
-                })
+                let currentUser = User.current()!
+                
+                currentUser.joinInterest(interestId: newInterest.objectId!)
                 
             } else {
                 // fail

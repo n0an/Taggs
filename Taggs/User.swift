@@ -33,13 +33,13 @@ class User: PFUser {
     
     // MARK: - PFSubclassing
 
-    override public class func initialize() {
-        
-        self.registerSubclass()
-        
-        print("User PFSubclass initialize")
-        
-    }
+//    override public class func initialize() {
+//        
+//        self.registerSubclass()
+//        
+//        print("User PFSubclass initialize")
+//        
+//    }
     
 
 }

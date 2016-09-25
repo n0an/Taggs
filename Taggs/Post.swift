@@ -78,13 +78,13 @@ public class Post: PFObject, PFSubclassing {
     
     // MARK: - PFSubclassing
     
-    override public class func initialize() {
-        
-        self.registerSubclass()
-        
-        print("Post PFSubclass initialize")
-        
-    }
+//    override public class func initialize() {
+//        
+//        self.registerSubclass()
+//        
+//        print("Post PFSubclass initialize")
+//        
+//    }
     
     public static func parseClassName() -> String {
         return "Post"

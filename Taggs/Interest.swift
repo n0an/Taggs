@@ -15,7 +15,7 @@ public class Interest: PFObject, PFSubclassing {
     // MARK: - Public API
 
     @NSManaged public var title: String!
-    @NSManaged public var interestDescriptipn: String!
+    @NSManaged public var interestDescription: String!
     @NSManaged public var numberOfMembers: Int
     @NSManaged public var numberOfPosts: Int
     @NSManaged public var featuredImageFile: PFFile
@@ -31,15 +31,34 @@ public class Interest: PFObject, PFSubclassing {
     }
     
     
-    // MARK: - PFSubclassing
+    // MARK: - Convenience init
     
-    override public class func initialize() {
+    override init() {
+        super.init()
+    }
+    
+    init(title: String, interestDescription: String, imageFile: PFFile, numberOfMembers: Int, numberOfPosts: Int) {
+        super.init()
         
-        self.registerSubclass()
+        self.title = title
+        self.interestDescription = interestDescription
+        self.featuredImageFile = imageFile
+        self.numberOfMembers = numberOfMembers
+        self.numberOfPosts = numberOfPosts
         
-        print("Interest PFSubclass initialize")
         
     }
+    
+    
+    // MARK: - PFSubclassing
+    
+//    override public class func initialize() {
+//        
+//        self.registerSubclass()
+//        
+//        print("Interest PFSubclass initialize")
+//        
+//    }
 
     public static func parseClassName() -> String {
         return "Interest"

@@ -21,7 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.backgroundColor = UIColor(hex: "f2f2f2")
         
         // Register PFObject subclasses
-        TestObject.initialize()
+//        TestObject.initialize()
+//        Interest.initialize()
+//        User.initialize()
+//        Post.initialize()
+//        Comment.initialize()
         
         
         let configuration = ParseClientConfiguration {
@@ -30,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         Parse.initialize(with: configuration)
 
+        
+        
 //        let testObject = TestObject()
 //        testObject.title = "ObjectNumber1"
 //        testObject.objectDescription = "This is a some description"

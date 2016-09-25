@@ -51,7 +51,7 @@ class InterestHeaderView: UIView {
     
     @IBAction func closeButtonTapped(_ sender: UIButton)
     {
-        print("clsoe button tapped gets called")
+        print("close button tapped gets called")
         // delegate right now is InterestViewController
         delegate.closeButtonClicked()
     }

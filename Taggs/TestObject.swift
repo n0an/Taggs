@@ -17,13 +17,13 @@ class TestObject: PFObject, PFSubclassing {
     @NSManaged public var objectDescription: String!
     @NSManaged public var numbers: Int
     
-    override public class func initialize() {
-        
-        self.registerSubclass()
-        
-        print("TestObject PFSubclass initialize")
-
-    }
+//    override public class func initialize() {
+//        
+//        self.registerSubclass()
+//        
+//        print("TestObject PFSubclass initialize")
+//
+//    }
     
     public static func parseClassName() -> String {
         return "TestObject"

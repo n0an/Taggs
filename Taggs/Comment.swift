@@ -60,13 +60,13 @@ public class Comment: PFObject, PFSubclassing {
     
     // MARK: - PFSubclassing
     
-    override public class func initialize() {
-        
-        self.registerSubclass()
-        
-        print("Comment PFSubclass initialize")
-        
-    }
+//    override public class func initialize() {
+//        
+//        self.registerSubclass()
+//        
+//        print("Comment PFSubclass initialize")
+//        
+//    }
     
     public static func parseClassName() -> String {
         return "Comment"

@@ -59,6 +59,8 @@ class HomeViewController: UIViewController {
             
         } else {
             
+            fetchInterests()
+            
         }
         
     }
@@ -73,6 +75,44 @@ class HomeViewController: UIViewController {
         currentUserProfileImageButton.contentMode = .scaleAspectFill
         currentUserProfileImageButton.layer.cornerRadius = currentUserProfileImageButton.bounds.width / 2
         currentUserProfileImageButton.layer.masksToBounds = true
+    }
+    
+    
+    // MARK: __PARSE METHODS__
+    
+    func fetchInterests() {
+        let currentUser = User.current()!
+        
+        let interestIds = currentUser.interestIds
+        
+        if interestIds!.count > 0 {
+            
+            let interestQuery = PFQuery(className: Interest.parseClassName())
+            
+            interestQuery.order(byDescending: "updatedAt")
+            
+            interestQuery.whereKey("objectId", containedIn: interestIds!)
+            
+            interestQuery.findObjectsInBackground(block: { (objects, error) in
+                
+                if error == nil {
+                    if let interestObjects = objects as [PFObject]! {
+                        self.interests.removeAll()
+                        
+                        for interestObject in interestObjects {
+                            let interest = interestObject as! Interest
+                            self.interests.append(interest)
+                        }
+                        
+                        self.collectionView.reloadData()
+                    }
+                } else {
+                    print("\(error?.localizedDescription)")
+                }
+                
+            })
+        }
+        
     }
     
     
