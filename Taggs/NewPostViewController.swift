@@ -119,7 +119,7 @@ class NewPostViewController: UIViewController {
                 
                 
             } else {
-                print("\(error?.localizedDescription)")
+                print("ZZZZZZZZZZ:: \(error?.localizedDescription)")
             }
             self.dismiss(animated: true, completion: nil)
 

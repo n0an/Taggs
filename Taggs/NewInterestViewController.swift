@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Photos
+//import Photos
 import Spring
 import Parse
 
@@ -31,6 +31,9 @@ class NewInterestViewController: UIViewController {
     // MARK: - PROPERTIES
     
     fileprivate var featuredImage: UIImage!
+    
+    fileprivate var imagePicker: UIImagePickerController!
+
     
     // MARK: - STATUS BAR CUSTOMIZATION
 
@@ -70,7 +73,7 @@ class NewInterestViewController: UIViewController {
 
     func presentImagePicker() {
         
-        let imagePicker = UIImagePickerController()
+        imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = false
         imagePicker.delegate = self
         
@@ -79,6 +82,9 @@ class NewInterestViewController: UIViewController {
         } else {
             imagePicker.sourceType = .photoLibrary
         }
+        
+        
+        imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: imagePicker.sourceType)!
         
         present(imagePicker, animated: true, completion: nil)
         
@@ -162,21 +168,9 @@ class NewInterestViewController: UIViewController {
     
     @IBAction func selectFeaturedImageButtonClicked(_ sender: DesignableButton) {
         
-        let authorization = PHPhotoLibrary.authorizationStatus()
+
         
-        
-        if authorization == .notDetermined {
-            PHPhotoLibrary.requestAuthorization({ (status) in
-                DispatchQueue.main.async {
-                    self.selectFeaturedImageButtonClicked(sender)
-                }
-            })
-            return
-        }
-        
-        if authorization == .authorized {
-            presentImagePicker()
-        }
+        presentImagePicker()
 
     }
     
@@ -289,6 +283,7 @@ extension NewInterestViewController : UIImagePickerControllerDelegate, UINavigat
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
     {
+        
         self.backgroundImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         featuredImage = self.backgroundImageView.image
         self.backgroundColorView.alpha = 0.8

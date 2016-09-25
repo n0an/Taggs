@@ -35,6 +35,9 @@ class SignupProfileViewController: UIViewController {
         userProfileImageView.layer.masksToBounds = true
     }
     
+    
+    
+    
     @IBAction func pickProfileImage(_ tap: UITapGestureRecognizer) {
         
         
@@ -55,12 +58,16 @@ class SignupProfileViewController: UIViewController {
         
         
         
-        
+    }
+
+    func setupUserInstallation() {
+        let installation = PFInstallation.current()
+        installation!["user"] = PFUser.current()
+        installation?.saveInBackground()
         
     }
     
-    func presentImagePicker()
-    {
+    func presentImagePicker() {
         let imagePicker = UIImagePickerController()
         
         imagePicker.delegate = self
@@ -92,7 +99,10 @@ class SignupProfileViewController: UIViewController {
             let newUser = User(username: username, password: password, email: email, image: profileImage)
             
             newUser.signUpInBackground(block: { (success, error) -> Void in
+                
                 if error == nil {
+                    
+                    self.setupUserInstallation()
                     
                     self.dismiss(animated: true, completion: nil)
                     

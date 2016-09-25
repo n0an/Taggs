@@ -23,6 +23,12 @@ class LoginPasswordViewController: UIViewController {
         passwordTextField.becomeFirstResponder()
     }
     
+    func setupUserInstallation() {
+        let installation = PFInstallation.current()
+        installation!["user"] = PFUser.current()
+        installation?.saveInBackground()
+        
+    }
     
     @IBAction func logInClicked(_ sender: UIButton) {
         
@@ -30,6 +36,8 @@ class LoginPasswordViewController: UIViewController {
         
         PFUser.logInWithUsername(inBackground: email, password: password!) { (user, error) in
             if error == nil {
+                
+                self.setupUserInstallation()
                 
                 self.dismiss(animated: true, completion: nil)
                 

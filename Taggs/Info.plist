@@ -38,6 +38,11 @@
 	<string>YES</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>YES</string>
+    
+    <!-- 📷 Camera -->
+    <key>NSCameraUsageDescription</key>
+    <string>YES</string>
+    
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
