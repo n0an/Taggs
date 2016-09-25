@@ -25,7 +25,7 @@ class InterestCollectionViewCell: UICollectionViewCell {
     fileprivate func updateUI()
     {
         interestTitleLabel?.text! = interest.title
-        featuredImageView?.image! = interest.featuredImage
+//        featuredImageView?.image! = interest.featuredImage
     }
     
     override func layoutSubviews() {

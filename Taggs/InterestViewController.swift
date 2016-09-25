@@ -12,7 +12,7 @@ import Spring
 class InterestViewController: UIViewController {
     
     // MARK: - Public API
-    var interest: Interest! = Interest.createInterests()[0]
+    var interest: Interest!
     
     // MARK: - Private
     @IBOutlet weak var tableView: UITableView!
@@ -112,7 +112,7 @@ class InterestViewController: UIViewController {
     }
     
     func fetchPosts() {
-        posts = Post.allPosts
+        
         tableView.reloadData()
     }
     
@@ -168,13 +168,14 @@ extension InterestViewController: UITableViewDataSource {
         
         let post = posts[indexPath.row]
         
-        if post.postImage != nil {
+        if post.postImageFile != nil {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIDWithImage, for: indexPath) as! PostTableViewCell
         
             cell.post = post
             cell.delegate = self
             return cell
+            
         } else {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cellIDWithOutImage, for: indexPath) as! PostTableViewCell

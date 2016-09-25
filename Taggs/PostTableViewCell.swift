@@ -36,11 +36,11 @@ class PostTableViewCell: UITableViewCell {
     fileprivate var currentUserDidLike: Bool = false
     
     fileprivate func updateUI() {
-        userProfileImageView.image = post.user.profileImage
-        
-        userNameLabel?.text = post.user.fullName
-        createdAtLabel?.text = post.createdAt
-        postImageView?.image = post.postImage
+//        userProfileImageView.image = post.user.profileImage
+//        
+//        userNameLabel?.text = post.user.fullName
+//        createdAtLabel?.text = post.createdAt
+//        postImageView?.image = post.postImage
         postTextLabel?.text = post.postText
         
         // rounded post image view, user profile image
@@ -71,16 +71,16 @@ class PostTableViewCell: UITableViewCell {
     
     @IBAction func likeButtonClicked(_ sender: DesignableButton) {
         
-        post.userDidLike = !post.userDidLike
-        if post.userDidLike {
-            post.numberOfLikes += 1
-        } else {
-            post.numberOfLikes -= 1
-        }
+//        post.userDidLike = !post.userDidLike
+//        if post.userDidLike {
+//            post.numberOfLikes += 1
+//        } else {
+//            post.numberOfLikes -= 1
+//        }
         
         likeButton.setTitle("⭐️ \(post.numberOfLikes) Likes", for: .normal)
         
-        currentUserDidLike = post.userDidLike
+//        currentUserDidLike = post.userDidLike
         
         changeLikeButtonColor()
         

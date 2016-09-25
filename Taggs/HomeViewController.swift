@@ -20,7 +20,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var currentUserFullNameButton: UIButton!
     
     // MARK: - PROPERTIES
-    fileprivate var interests = Interest.createInterests()
+    fileprivate var interests = [Interest]()
     fileprivate var slideRightTransitionAnimator = SlideRightTransitionAnimator()
     fileprivate var popTransitionAnimator = PopTransitionAnimator()
     fileprivate var slideRightThenPopTransitionAnimator = SlideRightThenPopTransitionAnimator()

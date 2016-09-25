@@ -40,7 +40,7 @@ class DiscoverTableViewCell: UITableViewCell {
     func updateUI() {
         
         interestTitleLabel.text! = interest.title
-        interestFeaturedImage.image! = interest.featuredImage
+//        interestFeaturedImage.image! = interest.featuredImage
         interestDescriptionLabel.text! = interest.description
         
         joinButton.setTitle("→", for: .normal)

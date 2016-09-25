@@ -26,7 +26,7 @@ class InterestHeaderView: UIView {
     var delegate: InterestHeaderViewDelegate!
     
     fileprivate func updateUI() {
-        backgroundImageView?.image! = interest.featuredImage
+//        backgroundImageView?.image! = interest.featuredImage
         interestTitleLabel?.text! = interest.title
         numberOfMembersLabel.text! = "\(interest.numberOfMembers) members"
         numberOfPostsLabel.text! = "\(interest.numberOfPosts) posts"

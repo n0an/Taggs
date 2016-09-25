@@ -28,7 +28,7 @@ class CommentTableViewCell: UITableViewCell
     
     private func updateUI() {
         
-        userNameLabel.text = comment.user.fullName
+//        userNameLabel.text = comment.user.fullName
         
         commentTextLabel.text = comment.commentText
         
@@ -45,16 +45,16 @@ class CommentTableViewCell: UITableViewCell
     
     @IBAction func likeButtonClicked(sender: DesignableButton)
     {
-        comment.userDidLike = !comment.userDidLike
-        if comment.userDidLike {
-            comment.numberOfLikes += 1
-        } else {
-            comment.numberOfLikes -= 1
-        }
-        
-        likeButton.setTitle("⭐️ \(comment.numberOfLikes) Likes", for: .normal)
-        
-        currentUserDidLike = comment.userDidLike
+//        comment.userDidLike = !comment.userDidLike
+//        if comment.userDidLike {
+//            comment.numberOfLikes += 1
+//        } else {
+//            comment.numberOfLikes -= 1
+//        }
+//        
+//        likeButton.setTitle("⭐️ \(comment.numberOfLikes) Likes", for: .normal)
+//        
+//        currentUserDidLike = comment.userDidLike
         
         changeLikeButtonColor()
         
