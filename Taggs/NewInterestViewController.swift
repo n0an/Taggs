@@ -91,7 +91,7 @@ class NewInterestViewController: UIViewController {
         
         let newInterest = Interest(title: newInterestTitleTextField.text!, interestDescription: newInterestDescriptionTextView.text!, imageFile: featuredImageFile!, numberOfMembers: 1, numberOfPosts: 0)
         
-        newInterest.saveInBackground(block: { (success, error) in
+        newInterest.saveInBackground { (success, error) in
             if error == nil {
                 // success
                 // update the current user's interestIds
@@ -111,7 +111,8 @@ class NewInterestViewController: UIViewController {
                 // fail
                 print("\(error!.localizedDescription)")
             }
-        })
+        }
+        
 
         
     }

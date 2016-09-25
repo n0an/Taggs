@@ -58,6 +58,7 @@ class NewPostViewController: UIViewController {
         self.usernameLabel.text = currentUser.username!
         
         if let imageFile = currentUser.profileImageFile {
+            
             imageFile.getDataInBackground(block: { (data, error) in
                 if error == nil {
                     

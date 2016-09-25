@@ -126,8 +126,7 @@ class InterestViewController: UIViewController {
         postQuery.includeKey("user")
         
         
-        postQuery.findObjectsInBackground(block: { (objects, error) in
-            
+        postQuery.findObjectsInBackground { (objects, error) in
             if error == nil {
                 
                 if let postsObjects = objects as [PFObject]! {
@@ -144,9 +143,8 @@ class InterestViewController: UIViewController {
             } else {
                 print("\(error?.localizedDescription)")
             }
-            
-            
-        })
+
+        }
         
         
         
