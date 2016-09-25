@@ -25,6 +25,8 @@ class SignupProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.profileImage = userProfileImageView.image
+        
         self.view.layoutIfNeeded()
         
         usernameTextField.becomeFirstResponder()
@@ -83,6 +85,8 @@ class SignupProfileViewController: UIViewController {
             // animate
             shake()
         } else {
+            
+            
             let username = usernameTextField.text!
             
             let newUser = User(username: username, password: password, email: email, image: profileImage)

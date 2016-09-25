@@ -46,7 +46,6 @@ class HomeViewController: UIViewController {
             flowLayout.itemSize = CGSize(width: 250.0, height: 300.0)
         }
         
-        configureUserProfile()
 
     }
     
@@ -54,7 +53,6 @@ class HomeViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if PFUser.current() == nil {
-            
             
             showLogin()
             
@@ -64,6 +62,8 @@ class HomeViewController: UIViewController {
             
             fetchInterests()
             
+            configureUserProfile()
+
             // CATCHING NOTIFICATION FROM NewInterestViewController
             
             let center = NotificationCenter.default
@@ -87,6 +87,8 @@ class HomeViewController: UIViewController {
         
     }
     
+    
+    
     func interestWasDisplayed(_ newInterest: Interest) -> Bool {
         for interest in interests {
             if interest.objectId! == newInterest.objectId! {
@@ -101,7 +103,33 @@ class HomeViewController: UIViewController {
 
     func configureUserProfile() {
         
+        
+        let currentUser = User.current()!
+        
+        currentUser.profileImageFile.getDataInBackground { (data, error) in
+            if error == nil {
+                
+                if let imageData = data {
+                    
+                    let image = UIImage(data: imageData)
+                    
+                    self.currentUserProfileImageButton.setImage(image, for: .normal)
+                }
+                
+                
+            } else {
+                print("\(error?.localizedDescription)")
+            }
+        }
+        
+        currentUserFullNameButton.setTitle(currentUser.username!, for: .normal)
+        
+        
         self.view.layoutIfNeeded()
+        
+        
+        
+        
         // configure image button
         currentUserProfileImageButton.contentMode = .scaleAspectFill
         currentUserProfileImageButton.layer.cornerRadius = currentUserProfileImageButton.bounds.width / 2
@@ -113,8 +141,6 @@ class HomeViewController: UIViewController {
     
     func fetchInterests() {
         let currentUser = User.current()!
-        
-//        let interestIds = currentUser.interestIds
         
         if let interestIds = currentUser.interestIds {
             

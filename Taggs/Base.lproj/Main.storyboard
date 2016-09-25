@@ -52,10 +52,10 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Interest Cell" rowHeight="400" id="PdD-pg-P8M" customClass="DiscoverTableViewCell" customModule="Taggs" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="22" width="375" height="400"/>
+                                                <rect key="frame" x="0.0" y="22" width="1000" height="400"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PdD-pg-P8M" id="tQ0-P9-K6I">
-                                                    <frame key="frameInset" width="375" height="399"/>
+                                                    <frame key="frameInset" width="1000" height="399"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CtL-Cm-BoA" customClass="CardView" customModule="Taggs" customModuleProvider="target">
@@ -213,7 +213,7 @@
                                             </collectionViewFlowLayout>
                                             <cells>
                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Interest Cell" id="dUx-ZZ-unu" customClass="InterestCollectionViewCell" customModule="Taggs" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="70" width="280" height="380"/>
+                                                    <rect key="frame" x="20" y="0.0" width="280" height="380"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="380"/>
@@ -275,7 +275,7 @@
                                                 <constraint firstAttribute="height" constant="30" id="Odr-zr-iMP"/>
                                                 <constraint firstAttribute="width" constant="30" id="bYr-lc-ARi"/>
                                             </constraints>
-                                            <state key="normal" image="profile1"/>
+                                            <state key="normal" image="defaultProfileImage"/>
                                             <connections>
                                                 <action selector="actionUserProfileButtonClicked" destination="d2C-0R-ZJ8" eventType="touchUpInside" id="aCt-zW-Nte"/>
                                             </connections>
@@ -1287,7 +1287,7 @@
         <!--Navigation Controller-->
         <scene sceneID="hw9-ca-I5C">
             <objects>
-                <navigationController storyboardIdentifier="WelcomeNavigationViewController" id="W7c-4M-ivL" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="WelcomeNavigationViewController" navigationBarHidden="YES" id="W7c-4M-ivL" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xdn-mD-gHM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
