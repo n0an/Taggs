@@ -70,6 +70,8 @@ class DiscoverViewController: UIViewController {
         
         query.order(byDescending: "updatedAt")
         
+        query.cachePolicy = PFCachePolicy.networkElseCache
+        
         query.findObjectsInBackground { (objects, error) in
             if error == nil {
                 
@@ -100,6 +102,8 @@ class DiscoverViewController: UIViewController {
         query.order(byDescending: "updatedAt")
         
         query.limit = 20
+        
+        query.cachePolicy = PFCachePolicy.networkElseCache
         
         query.findObjectsInBackground { (objects, error) in
             if error == nil {

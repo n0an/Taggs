@@ -121,6 +121,7 @@ class HomeViewController: UIViewController {
             
             interestQuery.whereKey("objectId", containedIn: interestIds)
             
+            interestQuery.cachePolicy = PFCachePolicy.networkElseCache
             
             interestQuery.findObjectsInBackground(block: { (objects, error) in
                 

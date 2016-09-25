@@ -125,6 +125,7 @@ class InterestViewController: UIViewController {
         
         postQuery.includeKey("user")
         
+        postQuery.cachePolicy = PFCachePolicy.networkElseCache
         
         postQuery.findObjectsInBackground { (objects, error) in
             if error == nil {

@@ -83,6 +83,8 @@ class CommentsViewController: UIViewController {
         
         commentQuery.includeKey("user")
         
+        commentQuery.cachePolicy = PFCachePolicy.networkElseCache
+        
         commentQuery.findObjectsInBackground { (objects, error) in
             
             if error == nil {
