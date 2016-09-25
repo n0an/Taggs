@@ -24,37 +24,34 @@ class CommentTableViewCell: UITableViewCell
     
     // MARK: - Private
     
-    private var currentUserDidLike: Bool = false
-    
-    private func updateUI() {
+    fileprivate func updateUI() {
         
-//        userNameLabel.text = comment.user.fullName
+        // --- GETTING DATA FROM PARSE ---
+        
+        let user = comment.user as! User
+        
+        userNameLabel.text = user.username!
         
         commentTextLabel.text = comment.commentText
         
+        // ---------------------------
+        
         likeButton.setTitle("⭐️ \(comment.numberOfLikes) Likes", for: .normal)
         
-//        configureButtonAppearance()
+        changeLikeButtonColor()
+        
+        
     }
-    
-    private func configureButtonAppearance() {
-        likeButton.cornerRadius = 3.0
-        likeButton.borderWidth = 2.0
-        likeButton.borderColor = UIColor.lightGray
-    }
-    
-    @IBAction func likeButtonClicked(sender: DesignableButton)
-    {
-//        comment.userDidLike = !comment.userDidLike
-//        if comment.userDidLike {
-//            comment.numberOfLikes += 1
-//        } else {
-//            comment.numberOfLikes -= 1
-//        }
-//        
-//        likeButton.setTitle("⭐️ \(comment.numberOfLikes) Likes", for: .normal)
-//        
-//        currentUserDidLike = comment.userDidLike
+   
+    @IBAction func likeButtonClicked(sender: DesignableButton) {
+        
+        if currentUserLikes() {
+            comment.dislike()
+        } else {
+            comment.like()
+        }
+        
+        likeButton.setTitle("⭐️ \(comment.numberOfLikes) Likes", for: .normal)
         
         changeLikeButtonColor()
         
@@ -67,9 +64,10 @@ class CommentTableViewCell: UITableViewCell
         sender.animate()
     }
     
-    private func changeLikeButtonColor()
-    {
-        if currentUserDidLike {
+    
+    
+    private func changeLikeButtonColor() {
+        if currentUserLikes() {
             likeButton.borderColor = UIColor.red
             likeButton.tintColor = UIColor.red
         } else {
@@ -78,4 +76,23 @@ class CommentTableViewCell: UITableViewCell
         }
         
     }
+    
+    func currentUserLikes() -> Bool {
+        
+        if let ids = comment.likedUserIds {
+            if ids.contains(User.current()!.objectId!) {
+                return true
+            }
+        }
+        
+        return false
+        
+    }
 }
+
+
+
+
+
+
+

@@ -8,6 +8,7 @@
 
 import UIKit
 import Spring
+import Parse
 
 class CommentsViewController: UIViewController {
     
@@ -27,7 +28,7 @@ class CommentsViewController: UIViewController {
         static let cellIDWithImage = "PostCellWithImage"
         static let cellIDWithoutImage = "PostCellWithoutImage"
         static let cellIDComment = "Comment Cell"
-        static let segueIDShowCommentVC = "Show Comment Composer"
+        static let segueIDShowCommentComposer = "Show Comment Composer"
     }
     
 
@@ -36,8 +37,6 @@ class CommentsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchComments()
-
         // configure the navigation bar
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.barTintColor = UIColor(hex: "EE8222")
@@ -63,15 +62,48 @@ class CommentsViewController: UIViewController {
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
-        
+        fetchComments()
+
     }
 
-    
+    // MARK: - HELPER METHODS
+
+    // MARK: __PARSE METHODS__
+
     fileprivate func fetchComments() {
         
-//        self.comments = Comment.allComments()
         
-        tableView.reloadData()
+        let commentQuery = PFQuery(className: Comment.parseClassName())
+        
+        
+        commentQuery.order(byDescending: "createdAt")
+
+        
+        commentQuery.whereKey("postId", equalTo: post.objectId!)
+        
+        commentQuery.includeKey("user")
+        
+        commentQuery.findObjectsInBackground { (objects, error) in
+            
+            if error == nil {
+                
+                if let commentObjects = objects as [PFObject]! {
+                    self.comments.removeAll()
+                    
+                    for commentObject in commentObjects {
+                        let comment = commentObject as! Comment
+                        self.comments.append(comment)
+                    }
+                    
+                    self.tableView.reloadData()
+                }
+                
+            } else {
+                print("\(error?.localizedDescription)")
+            }
+            
+        }
+        
         
     }
     
@@ -93,14 +125,17 @@ class CommentsViewController: UIViewController {
         sender.velocity = 0.2
         sender.animate()
         
-        self.performSegue(withIdentifier: Storyboard.segueIDShowCommentVC, sender: nil)
+        self.performSegue(withIdentifier: Storyboard.segueIDShowCommentComposer, sender: nil)
     }
     
     
     // MARK: - NAVIGATION
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.identifier == Storyboard.segueIDShowCommentComposer {
+            let commentComposer = segue.destination as! NewCommentViewController
+            commentComposer.post = self.post
+        }
     }
     
 

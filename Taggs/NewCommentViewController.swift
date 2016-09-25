@@ -10,6 +10,10 @@ import UIKit
 
 class NewCommentViewController: UIViewController {
     
+    // MARK: - PUBLIC API
+    
+    var post: Post!
+    
     // MARK: - OUTLETS
     
     @IBOutlet weak var navigationBar: UINavigationBar!
@@ -32,6 +36,7 @@ class NewCommentViewController: UIViewController {
         commentTextView.text = ""
 
         self.view.layoutIfNeeded()
+        
         currentUserProfileImageView.layer.cornerRadius = currentUserProfileImageView.bounds.width/2
         currentUserProfileImageView.layer.masksToBounds = true
         
@@ -39,8 +44,35 @@ class NewCommentViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(NewCommentViewController.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(NewCommentViewController.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
-        self.view.layoutIfNeeded()
+        
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let currentUser = User.current()!
+        self.usernameLabel.text = currentUser.username!
+        
+        if let imageFile = currentUser.profileImageFile {
+            imageFile.getDataInBackground(block: { (data, error) in
+                if error == nil {
+                    
+                    if let imageData = data {
+                        if let image = UIImage(data: imageData) {
+                            self.currentUserProfileImageView.image! = image
+                        }
+                    }
+                    
+                } else {
+                    
+                }
+            })
+        }
+
+        
+    }
+    
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -48,12 +80,30 @@ class NewCommentViewController: UIViewController {
     
     // MARK: - HELPER METHODS
     
+    // MARK: __PARSE METHODS__
+    
+    func uploadNewComment() {
+        
+        let currentUser = User.current()!
+        
+        let newComment = Comment(postId: self.post.objectId!, user: currentUser, commentText: commentTextView.text, numberOfLikes: 0)
+        
+        newComment.saveInBackground { (success, error) in
+            if error == nil {
+                
+                // comment has been added
+                
+            } else {
+                print("\(error?.localizedDescription)")
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+    }
 
     
     // MARK: - ACTIONS
     
-    
-    // TODO: - create a new post and send it to parse
     @IBAction func dismissComposer() {
         
         commentTextView.resignFirstResponder()
@@ -61,6 +111,8 @@ class NewCommentViewController: UIViewController {
     }
     
     @IBAction func postDidTap() {
+        
+        uploadNewComment()
         
         commentTextView.resignFirstResponder()
         self.dismiss(animated: true, completion: nil)

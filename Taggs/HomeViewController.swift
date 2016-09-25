@@ -121,6 +121,9 @@ class HomeViewController: UIViewController {
             
             interestQuery.whereKey("objectId", containedIn: interestIds)
             
+            
+            
+            
             interestQuery.findObjectsInBackground(block: { (objects, error) in
                 
                 if error == nil {

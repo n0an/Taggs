@@ -11,6 +11,8 @@ import Parse
 
 public class Comment: PFObject, PFSubclassing {
     
+    // MARK: - PUBLIC API
+
     @NSManaged public var postId: String!
     @NSManaged public var user: PFUser!
     @NSManaged public var commentText: String!

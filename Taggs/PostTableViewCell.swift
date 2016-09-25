@@ -34,17 +34,6 @@ class PostTableViewCell: UITableViewCell {
     
     // MARK: - Private
     
-//    fileprivate var currentUserDidLike: Bool {
-//        get {
-//            if let ids = post.likedUserIds {
-//                if ids.contains(User.current()!.objectId!) {
-//                    return true
-//                }
-//            }
-//            return false
-//        }
-//    }
-    
     fileprivate func updateUI() {
         
         // --- GETTING DATA FROM PARSE ---
@@ -96,6 +85,9 @@ class PostTableViewCell: UITableViewCell {
         likeButton.setTitle("⭐️ \(post.numberOfLikes) Likes", for: .normal)
         
         configureButtonAppearance()
+        
+        changeLikeButtonColor()
+
     }
     
     fileprivate func configureButtonAppearance() {
@@ -106,13 +98,12 @@ class PostTableViewCell: UITableViewCell {
         commentButton?.borderWidth = 2.0
         commentButton?.cornerRadius = 3.0
         commentButton?.borderColor = UIColor.lightGray
-    
+        
     }
     
     
     @IBAction func likeButtonClicked(_ sender: DesignableButton) {
 
-        
         if currentUserLikes() {
             post.dislike()
         } else {
@@ -130,7 +121,6 @@ class PostTableViewCell: UITableViewCell {
         sender.damping = 0.1
         sender.velocity = 0.2
         sender.animate()
-        
         
     }
     

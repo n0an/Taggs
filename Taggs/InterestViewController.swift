@@ -117,8 +117,6 @@ class InterestViewController: UIViewController {
     
     func fetchPosts() {
         
-//        let currentUser = User.current()!
-        
         let postQuery = PFQuery(className: Post.parseClassName())
         
         postQuery.order(byDescending: "createdAt")
@@ -126,6 +124,7 @@ class InterestViewController: UIViewController {
         postQuery.whereKey("interestId", equalTo: interest.objectId!)
         
         postQuery.includeKey("user")
+        
         
         postQuery.findObjectsInBackground(block: { (objects, error) in
             
@@ -149,42 +148,6 @@ class InterestViewController: UIViewController {
             
         })
         
-//        if interest.numberOfPosts > 0 {
-//            
-//            
-//        }
-        
-        
-        
-//        let interestIds = currentUser.interestIds
-//        
-//        if interestIds.count > 0 {
-//            
-//            let interestQuery = PFQuery(className: Interest.parseClassName())
-//            
-//            interestQuery.order(byDescending: "updatedAt")
-//            
-//            interestQuery.whereKey("objectId", containedIn: interestIds)
-//            
-//            interestQuery.findObjectsInBackground(block: { (objects, error) in
-//                
-//                if error == nil {
-//                    if let interestObjects = objects as [PFObject]! {
-//                        self.interests.removeAll()
-//                        
-//                        for interestObject in interestObjects {
-//                            let interest = interestObject as! Interest
-//                            self.interests.append(interest)
-//                        }
-//                        
-//                        self.collectionView.reloadData()
-//                    }
-//                } else {
-//                    print("\(error?.localizedDescription)")
-//                }
-//                
-//            })
-//        }
         
         
         
