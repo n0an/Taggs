@@ -33,6 +33,7 @@
 		18B556791D96D17800879E93 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B556781D96D17800879E93 /* CardView.swift */; };
 		18B5567C1D96D37800879E93 /* InterestButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5567B1D96D37800879E93 /* InterestButton.swift */; };
 		18B5567E1D97081200879E93 /* TestObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5567D1D97081200879E93 /* TestObject.swift */; };
+		18B556801D97B72C00879E93 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5567F1D97B72C00879E93 /* Global.swift */; };
 		65BCE015EDEED125141979AB /* Pods_Taggs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8D728FC63936D539E16ED66 /* Pods_Taggs.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		18B556781D96D17800879E93 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		18B5567B1D96D37800879E93 /* InterestButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterestButton.swift; sourceTree = "<group>"; };
 		18B5567D1D97081200879E93 /* TestObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestObject.swift; sourceTree = "<group>"; };
+		18B5567F1D97B72C00879E93 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		59D76C75AC31268F86E3CCFD /* Pods-Taggs.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taggs.release.xcconfig"; path = "Pods/Target Support Files/Pods-Taggs/Pods-Taggs.release.xcconfig"; sourceTree = "<group>"; };
 		9D269809F91F7C9B9B57C10D /* Pods-Taggs.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taggs.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taggs/Pods-Taggs.debug.xcconfig"; sourceTree = "<group>"; };
 		E8D728FC63936D539E16ED66 /* Pods_Taggs.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Taggs.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,10 +134,11 @@
 			isa = PBXGroup;
 			children = (
 				1801912A1D94672000188FFC /* Interest.swift */,
-				18B5566B1D9679CF00879E93 /* Comment.swift */,
-				180191371D95A09E00188FFC /* Post.swift */,
 				180191351D95A08800188FFC /* User.swift */,
+				180191371D95A09E00188FFC /* Post.swift */,
+				18B5566B1D9679CF00879E93 /* Comment.swift */,
 				18B5567D1D97081200879E93 /* TestObject.swift */,
+				18B5567F1D97B72C00879E93 /* Global.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				15F414501D96DE2A00FE1883 /* DiscoverTableViewCell.swift in Sources */,
 				18B5567C1D96D37800879E93 /* InterestButton.swift in Sources */,
 				180191331D94697000188FFC /* InterestHeaderView.swift in Sources */,
+				18B556801D97B72C00879E93 /* Global.swift in Sources */,
 				18B556751D96C72200879E93 /* PopTransitionAnimator.swift in Sources */,
 				18B556791D96D17800879E93 /* CardView.swift in Sources */,
 				180191171D94662E00188FFC /* AppDelegate.swift in Sources */,

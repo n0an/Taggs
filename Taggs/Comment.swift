@@ -7,43 +7,71 @@
 //
 
 import UIKit
+import Parse
 
-public struct CommentKey {
-    static let className = "Comment"
-    static let postId = "postId"
-    static let author = "author"
-    static let commentText = "commentText"
-    static let numberOfLikes = "numberOfLikes"
-    static let likedUserIds = "likedUserIds"
-}
-
-class Comment {
-    var id: String = ""
-    var createdAt: String = "today"
-    let postId: String
-    let user: User
-    var commentText: String
-    var numberOfLikes: Int
+public class Comment: PFObject, PFSubclassing {
     
-    var userDidLike: Bool = false
+    @NSManaged public var postId: String!
+    @NSManaged public var user: PFUser!
+    @NSManaged public var commentText: String!
+    @NSManaged public var numberOfLikes: Int
+    @NSManaged public var likedUserIds: [String]!
     
-    init(id: String, createdAt: String, postId: String, author: User, commentText: String, numberOfLikes: Int) {
-        self.id = id
-        self.createdAt = createdAt
+    // MARK: - Like/dislike comment by current user
+    
+    public func like() {
+        
+        let currentUserObjectId = User.current()!.objectId!
+        if !likedUserIds.contains(currentUserObjectId) {
+            numberOfLikes += 1
+            likedUserIds.insert(currentUserObjectId, at: 0)
+            self.saveInBackground()
+        }
+    }
+    
+    public func dislike() {
+        
+        let currentUserObjectId = User.current()!.objectId!
+        if let index = likedUserIds.index(of: currentUserObjectId) {
+            numberOfLikes -= 1
+            likedUserIds.remove(at: index)
+            self.saveInBackground()
+        }
+    }
+    
+    override init() {
+        super.init()
+    }
+    
+    // MARK: - create new comment
+    
+    init(postId: String, user: PFUser, commentText: String, numberOfLikes: Int) {
+        
+        super.init()
+        
         self.postId = postId
-        self.user = author
+        self.user = user
         self.commentText = commentText
         self.numberOfLikes = numberOfLikes
+        self.likedUserIds = [String]()
     }
     
-    // dummy data
-    static func allComments() -> [Comment] {
-        return [
-            Comment(id: "c1", createdAt: "May 21", postId: "p1", author: User.allUsers()[0], commentText: "Hello I55 love this post! Isn't this a nice comment? Blehhhh 😜", numberOfLikes: 21),
-            Comment(id: "c2", createdAt: "May 21", postId: "p1", author: User.allUsers()[0], commentText: "Hello I22 love this post! Isn't this a nice comment? Blehhhh 😜", numberOfLikes: 21),
-            Comment(id: "c3", createdAt: "May 21", postId: "p1", author: User.allUsers()[0], commentText: "Hello I11 love this post! Isn't this a nice comment? Blehhhh 😜", numberOfLikes: 21),
-            Comment(id: "c4", createdAt: "May 21", postId: "p1", author: User.allUsers()[0], commentText: "Hello I44 love this post! Isn't this a nice comment? Blehhhh 😜", numberOfLikes: 21),
-            Comment(id: "c5", createdAt: "May 21", postId: "p1", author: User.allUsers()[0], commentText: "Hello I33 love this post! Isn't this a nice comment? Blehhhh 😜", numberOfLikes: 21)
-        ]
+    // MARK: - Register, call this before register for Parse
+    
+    // MARK: - PFSubclassing
+    
+    override public class func initialize() {
+        
+        self.registerSubclass()
+        
+        print("Comment PFSubclass initialize")
+        
     }
+    
+    public static func parseClassName() -> String {
+        return "Comment"
+    }
+
+    
+    
 }

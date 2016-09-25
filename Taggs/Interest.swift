@@ -11,11 +11,14 @@ import Parse
 
 public class Interest: PFObject, PFSubclassing {
     
+    
+    // MARK: - Public API
+
     @NSManaged public var title: String!
     @NSManaged public var interestDescriptipn: String!
     @NSManaged public var numberOfMembers: Int
     @NSManaged public var numberOfPosts: Int
-    @NSManaged public var featuredImageFila: PFFile!
+    @NSManaged public var featuredImageFile: PFFile
 
     public func incrementNumberOfPosts() {
         numberOfPosts += 1
