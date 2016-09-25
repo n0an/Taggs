@@ -55,7 +55,10 @@ class HomeViewController: UIViewController {
         
         if PFUser.current() == nil {
             
-            presentLoginViewController()
+            
+            showLogin()
+            
+//            presentLoginViewController()
             
         } else {
             
@@ -111,45 +114,53 @@ class HomeViewController: UIViewController {
     func fetchInterests() {
         let currentUser = User.current()!
         
-        let interestIds = currentUser.interestIds
+//        let interestIds = currentUser.interestIds
         
-        if interestIds.count > 0 {
+        if let interestIds = currentUser.interestIds {
             
-            let interestQuery = PFQuery(className: Interest.parseClassName())
-            
-            interestQuery.order(byDescending: "updatedAt")
-            
-            interestQuery.whereKey("objectId", containedIn: interestIds)
-            
-            interestQuery.cachePolicy = PFCachePolicy.networkElseCache
-            
-            interestQuery.findObjectsInBackground(block: { (objects, error) in
+            if interestIds.count > 0 {
                 
-                if error == nil {
-                    if let interestObjects = objects as [PFObject]! {
-                        self.interests.removeAll()
-                        
-                        for interestObject in interestObjects {
-                            let interest = interestObject as! Interest
-                            self.interests.append(interest)
+                let interestQuery = PFQuery(className: Interest.parseClassName())
+                
+                interestQuery.order(byDescending: "updatedAt")
+                
+                interestQuery.whereKey("objectId", containedIn: interestIds)
+                
+                interestQuery.cachePolicy = PFCachePolicy.networkElseCache
+                
+                interestQuery.findObjectsInBackground(block: { (objects, error) in
+                    
+                    if error == nil {
+                        if let interestObjects = objects as [PFObject]! {
+                            self.interests.removeAll()
+                            
+                            for interestObject in interestObjects {
+                                let interest = interestObject as! Interest
+                                self.interests.append(interest)
+                            }
+                            
+                            self.collectionView.reloadData()
                         }
-                        
-                        self.collectionView.reloadData()
+                    } else {
+                        print("\(error?.localizedDescription)")
                     }
-                } else {
-                    print("\(error?.localizedDescription)")
-                }
-                
-            })
+                    
+                })
+            }
+
         }
+        
+        
         
     }
     
+    // MARK: - ACTIONS
     
     @IBAction func actionUserProfileButtonClicked() {
         
         PFUser.logOut()
-        presentLoginViewController()
+//        presentLoginViewController()
+        showLogin()
         
     }
     
@@ -182,6 +193,15 @@ class HomeViewController: UIViewController {
             
         }
 
+    }
+    
+    func showLogin() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let welcomeNavigationVC = storyboard.instantiateViewController(withIdentifier: "WelcomeNavigationViewController") as! UINavigationController
+        
+        welcomeNavigationVC.transitioningDelegate = slideRightTransitionAnimator
+        
+        present(welcomeNavigationVC, animated: true, completion: nil)
     }
     
     

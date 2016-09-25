@@ -1287,7 +1287,7 @@
         <!--Navigation Controller-->
         <scene sceneID="hw9-ca-I5C">
             <objects>
-                <navigationController storyboardIdentifier="WelcomeNavigationViewController" navigationBarHidden="YES" id="W7c-4M-ivL" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="WelcomeNavigationViewController" id="W7c-4M-ivL" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xdn-mD-gHM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
