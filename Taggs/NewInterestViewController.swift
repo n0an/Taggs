@@ -100,6 +100,13 @@ class NewInterestViewController: UIViewController {
                 
                 currentUser.joinInterest(interestId: newInterest.objectId!)
                 
+                // POSTING NOTIFICATION, IT WILL BE CATCHED BY HomeViewController, and run fetching and updating HomeVC CollectionView
+                
+                let center = NotificationCenter.default
+                let notification = NSNotification(name: NSNotification.Name(rawValue: "NewInterestCreated"), object: nil, userInfo: ["newInterestObject" : newInterest])
+                center.post(notification as Notification)
+                
+                
             } else {
                 // fail
                 print("\(error!.localizedDescription)")

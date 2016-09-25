@@ -61,8 +61,36 @@ class HomeViewController: UIViewController {
             
             fetchInterests()
             
+            // CATCHING NOTIFICATION FROM NewInterestViewController
+            
+            let center = NotificationCenter.default
+            let queue = OperationQueue.main
+            
+            
+            center.addObserver(forName: NSNotification.Name(rawValue: "NewInterestCreated"), object: nil, queue: queue, using: { (notification) in
+                
+                if let newInterest = notification.userInfo?["newInterestObject"] as? Interest {
+                    if !self.interestWasDisplayed(newInterest) {
+                        self.interests.insert(newInterest, at: 0)
+                        self.collectionView.reloadData()
+                    }
+                }
+                
+            })
+            
+            
+            
         }
         
+    }
+    
+    func interestWasDisplayed(_ newInterest: Interest) -> Bool {
+        for interest in interests {
+            if interest.objectId! == newInterest.objectId! {
+                return true
+            }
+        }
+        return false
     }
     
     
@@ -84,6 +112,10 @@ class HomeViewController: UIViewController {
         let currentUser = User.current()!
         
         let interestIds = currentUser.interestIds
+        
+        guard interestIds != nil else {
+            return
+        }
         
         if interestIds!.count > 0 {
             

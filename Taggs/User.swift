@@ -20,6 +20,14 @@ class User: PFUser {
     
     public func joinInterest(interestId: String) {
         
+        guard self.interestIds != nil else {
+            
+            self.interestIds = [interestId]
+            
+            return
+            
+        }
+        
         self.interestIds.insert(interestId, at: 0)
         self.saveInBackground { (success, error) in
             if error != nil {
