@@ -11,7 +11,7 @@ import Parse
 
 class User: PFUser {
     
-    @NSManaged public var interestIds: [String]!
+    @NSManaged public var interestIds: [String]
     @NSManaged public var profileImageFile: PFFile!
     
     public func isMemberOf(interestId: String) -> Bool {
@@ -19,14 +19,6 @@ class User: PFUser {
     }
     
     public func joinInterest(interestId: String) {
-        
-        guard self.interestIds != nil else {
-            
-            self.interestIds = [interestId]
-            
-            return
-            
-        }
         
         self.interestIds.insert(interestId, at: 0)
         self.saveInBackground { (success, error) in

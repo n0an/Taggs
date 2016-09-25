@@ -113,17 +113,13 @@ class HomeViewController: UIViewController {
         
         let interestIds = currentUser.interestIds
         
-        guard interestIds != nil else {
-            return
-        }
-        
-        if interestIds!.count > 0 {
+        if interestIds.count > 0 {
             
             let interestQuery = PFQuery(className: Interest.parseClassName())
             
             interestQuery.order(byDescending: "updatedAt")
             
-            interestQuery.whereKey("objectId", containedIn: interestIds!)
+            interestQuery.whereKey("objectId", containedIn: interestIds)
             
             interestQuery.findObjectsInBackground(block: { (objects, error) in
                 

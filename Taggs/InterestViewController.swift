@@ -148,6 +148,9 @@ class InterestViewController: UIViewController {
         if segue.identifier == Storyboard.segueIDShowComments {
             let commentsVC = segue.destination as! CommentsViewController
             commentsVC.post = sender as! Post
+        } else if segue.identifier == Storyboard.segueIDNewPostVC {
+            let postComposer = segue.destination as! NewPostViewController
+            postComposer.interest = interest
         }
     }
     

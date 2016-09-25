@@ -26,7 +26,23 @@ class InterestHeaderView: UIView {
     var delegate: InterestHeaderViewDelegate!
     
     fileprivate func updateUI() {
-//        backgroundImageView?.image! = interest.featuredImage
+        
+        interest.featuredImageFile.getDataInBackground { (imageData, error) in
+            
+            if error == nil {
+                
+                if let featuredImageData = imageData {
+                    self.backgroundImageView.image = UIImage(data: featuredImageData)!
+                }
+                
+            } else {
+                print("\(error?.localizedDescription)")
+            }
+            
+        }
+
+        
+        
         interestTitleLabel?.text! = interest.title
         numberOfMembersLabel.text! = "\(interest.numberOfMembers) members"
         numberOfPostsLabel.text! = "\(interest.numberOfPosts) posts"

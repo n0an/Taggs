@@ -11,6 +11,10 @@ import Photos
 
 class NewPostViewController: UIViewController {
     
+    // MARK: - PUBLIC API
+    
+    var interest: Interest!
+    
     // MARK: - OUTLETS
     
     @IBOutlet weak var navigationBar: UINavigationBar!
@@ -18,6 +22,8 @@ class NewPostViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var postContentTextView: UITextView!
     @IBOutlet weak var postImageView: UIImageView!
+    
+    fileprivate var postImage: UIImage!
     
     // MARK: - BAR CUSTOMIZATION
     
@@ -30,6 +36,8 @@ class NewPostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.layoutIfNeeded()
+        
         postContentTextView.becomeFirstResponder()
         postContentTextView.text = ""
         
@@ -41,6 +49,32 @@ class NewPostViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(NewPostViewController.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let currentUser = User.current()!
+        self.usernameLabel.text = currentUser.username!
+        
+        if let imageFile = currentUser.profileImageFile {
+            imageFile.getDataInBackground(block: { (data, error) in
+                if error == nil {
+                    
+                    if let imageData = data {
+                        if let image = UIImage(data: imageData) {
+                            self.currentUserProfileImageView.image! = image
+                        }
+                    }
+                    
+                } else {
+                    
+                }
+            })
+        }
+        
+    }
+    
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -62,6 +96,26 @@ class NewPostViewController: UIViewController {
         }
         
         present(imagePicker, animated: true, completion: nil)
+    }
+    
+    // MARK: __PARSE METHODS__
+    
+    func uploadNewPost() {
+        
+        let currentUser = User.current()!
+        
+        let newPost = Post(user: currentUser, postImage: postImage, postText: postContentTextView.text, numberOfLikes: 0, interestId: interest.objectId!)
+        
+        newPost.saveInBackground { (success, error) in
+            if error == nil {
+                self.interest.incrementNumberOfPosts()
+            } else {
+                print("\(error?.localizedDescription)")
+            }
+            self.dismiss(animated: true, completion: nil)
+
+        }
+        
     }
     
     
@@ -89,7 +143,6 @@ class NewPostViewController: UIViewController {
         
     }
     
-    // TODO: - create a new post and send it to parse
     @IBAction func dismiss() {
         
         postContentTextView.resignFirstResponder()
@@ -97,6 +150,8 @@ class NewPostViewController: UIViewController {
     }
     
     @IBAction func post() {
+        
+        uploadNewPost()
         
         postContentTextView.resignFirstResponder()
         self.dismiss(animated: true, completion: nil)
@@ -133,7 +188,9 @@ class NewPostViewController: UIViewController {
 
 extension NewPostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        self.postImageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        self.postImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+        
+        self.postImageView.image = self.postImage
         picker.dismiss(animated: true, completion: nil)
     }
     
